@@ -1,11 +1,12 @@
 from django.contrib.auth.views import LogoutView
-from django.urls import include
+from django.urls import include, path
+from django.conf import settings
+from django.contrib import admin
 from logic import views
 
 urlpatterns = [
     path('admin/', admin.site.urls, name='administrator'),
     path('', include('social_django.urls', namespace='social')),
-    path('', views_main.index, name='index'),
     path(
         'logout/',
         LogoutView.as_view(template_name=settings.LOGOUT_REDIRECT_URL),
