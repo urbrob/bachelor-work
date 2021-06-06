@@ -4,11 +4,6 @@ from django.contrib.auth.models import AbstractUser
 class User(AbstractUser):
     is_staff = models.BooleanField(default=True)
 
-    @property
-    def is_staff(self):
-        return True
-
-
 class Product(models.Model):
     name = models.CharField(max_length=128)
     price = models.FloatField()

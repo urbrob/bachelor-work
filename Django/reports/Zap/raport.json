@@ -1,0 +1,1665 @@
+{
+   "@version":"2.10.0",
+   "@generated":"Pn, 26 kwi 2021 23:03:20",
+   "site":[
+      {
+         "@name":"https://beacons.gcp.gvt2.com",
+         "@host":"beacons.gcp.gvt2.com",
+         "@port":"443",
+         "@ssl":"true",
+         "alerts":[
+
+         ]
+      },
+      {
+         "@name":"https://fonts.gstatic.com",
+         "@host":"fonts.gstatic.com",
+         "@port":"443",
+         "@ssl":"true",
+         "alerts":[
+            {
+               "pluginid":"10098",
+               "alertRef":"10098",
+               "alert":"Cross-Domain Misconfiguration",
+               "name":"Cross-Domain Misconfiguration",
+               "riskcode":"2",
+               "confidence":"2",
+               "riskdesc":"Medium (Medium)",
+               "desc":"<p>Web browser data loading may be possible, due to a Cross Origin Resource Sharing (CORS) misconfiguration on the web server<\/p>",
+               "instances":[
+                  {
+                     "uri":"https://fonts.gstatic.com/s/googlesans/v14/4UaGrENHsxJlGDuGo1OIlL3Awp5MKg.woff2",
+                     "method":"GET",
+                     "evidence":"Access-Control-Allow-Origin: *"
+                  },
+                  {
+                     "uri":"https://fonts.gstatic.com/s/googlesans/v14/4UaGrENHsxJlGDuGo1OIlL3Owp4.woff2",
+                     "method":"GET",
+                     "evidence":"Access-Control-Allow-Origin: *"
+                  }
+               ],
+               "count":"2",
+               "solution":"<p>Ensure that sensitive data is not available in an unauthenticated manner (using IP address white-listing, for instance).<\/p><p>Configure the \"Access-Control-Allow-Origin\" HTTP header to a more restrictive set of domains, or remove all CORS headers entirely, to allow the web browser to enforce the Same Origin Policy (SOP) in a more restrictive manner.<\/p>",
+               "otherinfo":"<p>The CORS misconfiguration on the web server permits cross-domain read requests from arbitrary third party domains, using unauthenticated APIs on this domain. Web browser implementations do not permit arbitrary third parties to read the response from authenticated APIs, however. This reduces the risk somewhat. This misconfiguration could be used by an attacker to access data that is available in an unauthenticated manner, but which uses some other form of security, such as IP address white-listing.<\/p>",
+               "reference":"<p>http://www.hpenterprisesecurity.com/vulncat/en/vulncat/vb/html5_overly_permissive_cors_policy.html<\/p>",
+               "cweid":"264",
+               "wascid":"14",
+               "sourceid":"3"
+            }
+         ]
+      },
+      {
+         "@name":"https://lh5.googleusercontent.com",
+         "@host":"lh5.googleusercontent.com",
+         "@port":"443",
+         "@ssl":"true",
+         "alerts":[
+
+         ]
+      },
+      {
+         "@name":"https://lh3.googleusercontent.com",
+         "@host":"lh3.googleusercontent.com",
+         "@port":"443",
+         "@ssl":"true",
+         "alerts":[
+
+         ]
+      },
+      {
+         "@name":"https://ogs.google.com",
+         "@host":"ogs.google.com",
+         "@port":"443",
+         "@ssl":"true",
+         "alerts":[
+            {
+               "pluginid":"10027",
+               "alertRef":"10027",
+               "alert":"Information Disclosure - Suspicious Comments",
+               "name":"Information Disclosure - Suspicious Comments",
+               "riskcode":"0",
+               "confidence":"1",
+               "riskdesc":"Informational (Low)",
+               "desc":"<p>The response appears to contain suspicious comments which may help an attacker. Note: Matches made within script blocks or files are against the entire content not only comments.<\/p>",
+               "instances":[
+                  {
+                     "uri":"https://ogs.google.com/widget/app/so?bc=1&origin=chrome-untrusted%3A%2F%2Fnew-tab-page&origin=chrome%3A%2F%2Fnew-tab-page&cn=app&pid=1&spid=243&hl=pl",
+                     "method":"GET",
+                     "evidence":"SELECT"
+                  },
+                  {
+                     "uri":"https://ogs.google.com/widget/app/so?bc=1&origin=chrome-untrusted%3A%2F%2Fnew-tab-page&origin=chrome%3A%2F%2Fnew-tab-page&cn=app&pid=1&spid=243&hl=pl",
+                     "method":"GET",
+                     "evidence":"SELECT"
+                  }
+               ],
+               "count":"2",
+               "solution":"<p>Remove all comments that return information that may help an attacker and fix any underlying problems they refer to.<\/p>",
+               "otherinfo":"<p>The following pattern was used: \\bSELECT\\b and was detected in the element starting with: \"<script nonce=\"gJ3X6b1mVwqAe6WHC1FEfA\">(function(){/*<\/p><p><\/p><p> Copyright The Closure Library Authors.<\/p><p> SPDX-License-Identifier: Apache-\", see evidence field for the suspicious comment/snippet.<\/p>",
+               "reference":"<p><\/p>",
+               "cweid":"200",
+               "wascid":"13",
+               "sourceid":"3"
+            },
+            {
+               "pluginid":"10015",
+               "alertRef":"10015",
+               "alert":"Incomplete or No Cache-control and Pragma HTTP Header Set",
+               "name":"Incomplete or No Cache-control and Pragma HTTP Header Set",
+               "riskcode":"1",
+               "confidence":"2",
+               "riskdesc":"Low (Medium)",
+               "desc":"<p>The cache-control and pragma HTTP header have not been set properly or are missing allowing the browser and proxies to cache content.<\/p>",
+               "instances":[
+                  {
+                     "uri":"https://ogs.google.com/widget/app/so?bc=1&origin=chrome-untrusted%3A%2F%2Fnew-tab-page&origin=chrome%3A%2F%2Fnew-tab-page&cn=app&pid=1&spid=243&hl=pl",
+                     "method":"GET",
+                     "param":"Cache-Control",
+                     "evidence":"private, max-age=259200"
+                  }
+               ],
+               "count":"1",
+               "solution":"<p>Whenever possible ensure the cache-control HTTP header is set with no-cache, no-store, must-revalidate; and that the pragma HTTP header is set with no-cache.<\/p>",
+               "reference":"<p>https://cheatsheetseries.owasp.org/cheatsheets/Session_Management_Cheat_Sheet.html#web-content-caching<\/p>",
+               "cweid":"525",
+               "wascid":"13",
+               "sourceid":"3"
+            },
+            {
+               "pluginid":"90033",
+               "alertRef":"90033",
+               "alert":"Loosely Scoped Cookie",
+               "name":"Loosely Scoped Cookie",
+               "riskcode":"0",
+               "confidence":"1",
+               "riskdesc":"Informational (Low)",
+               "desc":"<p>Cookies can be scoped by domain or path. This check is only concerned with domain scope.The domain scope applied to a cookie determines which domains can access it. For example, a cookie can be scoped strictly to a subdomain e.g. www.nottrusted.com, or loosely scoped to a parent domain e.g. nottrusted.com. In the latter case, any subdomain of nottrusted.com can access the cookie. Loosely scoped cookies are common in mega-applications like google.com and live.com. Cookies set from a subdomain like app.foo.bar are transmitted only to that domain by the browser. However, cookies scoped to a parent-level domain may be transmitted to the parent, or any subdomain of the parent.<\/p>",
+               "instances":[
+                  {
+                     "uri":"https://ogs.google.com/widget/app/so?bc=1&origin=chrome-untrusted%3A%2F%2Fnew-tab-page&origin=chrome%3A%2F%2Fnew-tab-page&cn=app&pid=1&spid=243&hl=pl",
+                     "method":"GET"
+                  }
+               ],
+               "count":"1",
+               "solution":"<p>Always scope cookies to a FQDN (Fully Qualified Domain Name).<\/p>",
+               "otherinfo":"<p>The origin domain used for comparison was: <\/p><p>ogs.google.com<\/p><p>CONSENT=PENDING+124<\/p><p><\/p>",
+               "reference":"<p>https://tools.ietf.org/html/rfc6265#section-4.1<\/p><p>https://owasp.org/www-project-web-security-testing-guide/v41/4-Web_Application_Security_Testing/06-Session_Management_Testing/02-Testing_for_Cookies_Attributes.html<\/p><p>http://code.google.com/p/browsersec/wiki/Part2#Same-origin_policy_for_cookies<\/p>",
+               "cweid":"565",
+               "wascid":"15",
+               "sourceid":"3"
+            },
+            {
+               "pluginid":"10054",
+               "alertRef":"10054",
+               "alert":"Cookie Without SameSite Attribute",
+               "name":"Cookie Without SameSite Attribute",
+               "riskcode":"1",
+               "confidence":"2",
+               "riskdesc":"Low (Medium)",
+               "desc":"<p>A cookie has been set without the SameSite attribute, which means that the cookie can be sent as a result of a 'cross-site' request. The SameSite attribute is an effective counter measure to cross-site request forgery, cross-site script inclusion, and timing attacks.<\/p>",
+               "instances":[
+                  {
+                     "uri":"https://ogs.google.com/widget/app/so?bc=1&origin=chrome-untrusted%3A%2F%2Fnew-tab-page&origin=chrome%3A%2F%2Fnew-tab-page&cn=app&pid=1&spid=243&hl=pl",
+                     "method":"GET",
+                     "param":"CONSENT",
+                     "evidence":"Set-Cookie: CONSENT"
+                  }
+               ],
+               "count":"1",
+               "solution":"<p>Ensure that the SameSite attribute is set to either 'lax' or ideally 'strict' for all cookies.<\/p>",
+               "reference":"<p>https://tools.ietf.org/html/draft-ietf-httpbis-cookie-same-site<\/p>",
+               "cweid":"16",
+               "wascid":"13",
+               "sourceid":"3"
+            },
+            {
+               "pluginid":"10055",
+               "alertRef":"10055",
+               "alert":"CSP: Notices",
+               "name":"CSP: Notices",
+               "riskcode":"1",
+               "confidence":"2",
+               "riskdesc":"Low (Medium)",
+               "desc":"<p>Warnings:<\/p><p>1:28: Invalid base64-value (should be multiple of 4 bytes: 22).<\/p><p>Info Items:<\/p><p>1:59: The \"'unsafe-inline'\" keyword-source has no effect in source lists that contain hash-source or nonce-source in CSP2 and later. Ensure that this pattern is only used for backwards compatibility with older CSP implementations and is not an oversight.<\/p><p>1:109: A draft of the next version of CSP deprecates report-uri in favour of a new report-to directive.<\/p><p><\/p>",
+               "instances":[
+                  {
+                     "uri":"https://ogs.google.com/widget/app/so?bc=1&origin=chrome-untrusted%3A%2F%2Fnew-tab-page&origin=chrome%3A%2F%2Fnew-tab-page&cn=app&pid=1&spid=243&hl=pl",
+                     "method":"GET",
+                     "param":"Content-Security-Policy",
+                     "evidence":"script-src 'report-sample' 'nonce-gJ3X6b1mVwqAe6WHC1FEfA' 'unsafe-inline';object-src 'none';base-uri 'self';report-uri /_/OneGoogleWidgetUi/cspreport;worker-src 'self'"
+                  },
+                  {
+                     "uri":"https://ogs.google.com/widget/app/so?bc=1&origin=chrome-untrusted%3A%2F%2Fnew-tab-page&origin=chrome%3A%2F%2Fnew-tab-page&cn=app&pid=1&spid=243&hl=pl",
+                     "method":"GET",
+                     "param":"Content-Security-Policy",
+                     "evidence":"script-src 'report-sample' 'nonce-9Yfd6ua3VJ0V3Al53pSIKw' 'unsafe-inline';object-src 'none';base-uri 'self';report-uri /_/OneGoogleWidgetUi/cspreport;worker-src 'self'"
+                  }
+               ],
+               "count":"2",
+               "solution":"<p>Ensure that your web server, application server, load balancer, etc. is properly configured to set the Content-Security-Policy header.<\/p>",
+               "otherinfo":"<p>The response contained multiple CSP headers, one or more of them contained a report-uri directive and therefore they could not be merged. The first identified header/policy was analyzed.<\/p>",
+               "reference":"<p>http://www.w3.org/TR/CSP2/<\/p><p>http://www.w3.org/TR/CSP/<\/p><p>http://caniuse.com/#search=content+security+policy<\/p><p>http://content-security-policy.com/<\/p><p>https://github.com/shapesecurity/salvation<\/p><p>https://developers.google.com/web/fundamentals/security/csp#policy_applies_to_a_wide_variety_of_resources<\/p>",
+               "cweid":"16",
+               "wascid":"15",
+               "sourceid":"3"
+            },
+            {
+               "pluginid":"10011",
+               "alertRef":"10011",
+               "alert":"Cookie Without Secure Flag",
+               "name":"Cookie Without Secure Flag",
+               "riskcode":"1",
+               "confidence":"2",
+               "riskdesc":"Low (Medium)",
+               "desc":"<p>A cookie has been set without the secure flag, which means that the cookie can be accessed via unencrypted connections.<\/p>",
+               "instances":[
+                  {
+                     "uri":"https://ogs.google.com/widget/app/so?bc=1&origin=chrome-untrusted%3A%2F%2Fnew-tab-page&origin=chrome%3A%2F%2Fnew-tab-page&cn=app&pid=1&spid=243&hl=pl",
+                     "method":"GET",
+                     "param":"CONSENT",
+                     "evidence":"Set-Cookie: CONSENT"
+                  }
+               ],
+               "count":"1",
+               "solution":"<p>Whenever a cookie contains sensitive information or is a session token, then it should always be passed using an encrypted channel. Ensure that the secure flag is set for cookies containing such sensitive information.<\/p>",
+               "reference":"<p>https://owasp.org/www-project-web-security-testing-guide/v41/4-Web_Application_Security_Testing/06-Session_Management_Testing/02-Testing_for_Cookies_Attributes.html<\/p>",
+               "cweid":"614",
+               "wascid":"13",
+               "sourceid":"3"
+            },
+            {
+               "pluginid":"10096",
+               "alertRef":"10096",
+               "alert":"Timestamp Disclosure - Unix",
+               "name":"Timestamp Disclosure - Unix",
+               "riskcode":"0",
+               "confidence":"1",
+               "riskdesc":"Informational (Low)",
+               "desc":"<p>A timestamp was disclosed by the application/web server - Unix<\/p>",
+               "instances":[
+                  {
+                     "uri":"https://ogs.google.com/widget/app/so?bc=1&origin=chrome-untrusted%3A%2F%2Fnew-tab-page&origin=chrome%3A%2F%2Fnew-tab-page&cn=app&pid=1&spid=243&hl=pl",
+                     "method":"GET",
+                     "evidence":"587272429"
+                  },
+                  {
+                     "uri":"https://ogs.google.com/widget/app/so?bc=1&origin=chrome-untrusted%3A%2F%2Fnew-tab-page&origin=chrome%3A%2F%2Fnew-tab-page&cn=app&pid=1&spid=243&hl=pl",
+                     "method":"GET",
+                     "evidence":"177865098"
+                  },
+                  {
+                     "uri":"https://ogs.google.com/widget/app/so?bc=1&origin=chrome-untrusted%3A%2F%2Fnew-tab-page&origin=chrome%3A%2F%2Fnew-tab-page&cn=app&pid=1&spid=243&hl=pl",
+                     "method":"GET",
+                     "evidence":"1661742934"
+                  },
+                  {
+                     "uri":"https://ogs.google.com/widget/app/so?bc=1&origin=chrome-untrusted%3A%2F%2Fnew-tab-page&origin=chrome%3A%2F%2Fnew-tab-page&cn=app&pid=1&spid=243&hl=pl",
+                     "method":"GET",
+                     "evidence":"177867527"
+                  }
+               ],
+               "count":"4",
+               "solution":"<p>Manually confirm that the timestamp data is not sensitive, and that the data cannot be aggregated to disclose exploitable patterns.<\/p>",
+               "otherinfo":"<p>587272429, which evaluates to: 1988-08-11 05:13:49<\/p>",
+               "reference":"<p>http://projects.webappsec.org/w/page/13246936/Information%20Leakage<\/p>",
+               "cweid":"200",
+               "wascid":"13",
+               "sourceid":"3"
+            },
+            {
+               "pluginid":"10055",
+               "alertRef":"10055",
+               "alert":"CSP: Wildcard Directive",
+               "name":"CSP: Wildcard Directive",
+               "riskcode":"2",
+               "confidence":"2",
+               "riskdesc":"Medium (Medium)",
+               "desc":"<p>The following directives either allow wildcard sources (or ancestors), are not defined, or are overly broadly defined: <\/p><p>style-src, style-src-elem, style-src-attr, img-src, connect-src, frame-src, frame-ancestors, font-src, media-src, manifest-src, prefetch-src, form-action<\/p><p><\/p><p>The directive(s): frame-ancestors, form-action are among the directives that do not fallback to default-src, missing/excluding them is the same as allowing anything.<\/p>",
+               "instances":[
+                  {
+                     "uri":"https://ogs.google.com/widget/app/so?bc=1&origin=chrome-untrusted%3A%2F%2Fnew-tab-page&origin=chrome%3A%2F%2Fnew-tab-page&cn=app&pid=1&spid=243&hl=pl",
+                     "method":"GET",
+                     "param":"Content-Security-Policy",
+                     "evidence":"script-src 'report-sample' 'nonce-9Yfd6ua3VJ0V3Al53pSIKw' 'unsafe-inline';object-src 'none';base-uri 'self';report-uri /_/OneGoogleWidgetUi/cspreport;worker-src 'self'"
+                  },
+                  {
+                     "uri":"https://ogs.google.com/widget/app/so?bc=1&origin=chrome-untrusted%3A%2F%2Fnew-tab-page&origin=chrome%3A%2F%2Fnew-tab-page&cn=app&pid=1&spid=243&hl=pl",
+                     "method":"GET",
+                     "param":"Content-Security-Policy",
+                     "evidence":"script-src 'report-sample' 'nonce-gJ3X6b1mVwqAe6WHC1FEfA' 'unsafe-inline';object-src 'none';base-uri 'self';report-uri /_/OneGoogleWidgetUi/cspreport;worker-src 'self'"
+                  }
+               ],
+               "count":"2",
+               "solution":"<p>Ensure that your web server, application server, load balancer, etc. is properly configured to set the Content-Security-Policy header.<\/p>",
+               "otherinfo":"<p>The response contained multiple CSP headers, one or more of them contained a report-uri directive and therefore they could not be merged. The first identified header/policy was analyzed.<\/p>",
+               "reference":"<p>http://www.w3.org/TR/CSP2/<\/p><p>http://www.w3.org/TR/CSP/<\/p><p>http://caniuse.com/#search=content+security+policy<\/p><p>http://content-security-policy.com/<\/p><p>https://github.com/shapesecurity/salvation<\/p><p>https://developers.google.com/web/fundamentals/security/csp#policy_applies_to_a_wide_variety_of_resources<\/p>",
+               "cweid":"16",
+               "wascid":"15",
+               "sourceid":"3"
+            },
+            {
+               "pluginid":"10017",
+               "alertRef":"10017",
+               "alert":"Cross-Domain JavaScript Source File Inclusion",
+               "name":"Cross-Domain JavaScript Source File Inclusion",
+               "riskcode":"1",
+               "confidence":"2",
+               "riskdesc":"Low (Medium)",
+               "desc":"<p>The page includes one or more script files from a third-party domain.<\/p>",
+               "instances":[
+                  {
+                     "uri":"https://ogs.google.com/widget/app/so?bc=1&origin=chrome-untrusted%3A%2F%2Fnew-tab-page&origin=chrome%3A%2F%2Fnew-tab-page&cn=app&pid=1&spid=243&hl=pl",
+                     "method":"GET",
+                     "param":"https://www.gstatic.com/_/mss/boq-one-google/_/js/k=boq-one-google.OneGoogleWidgetUi.pl.m7Y8W-dCBW0.es5.O/am=WABA/d=1/excm=_b,_tp,appwidgetnoauthview/ed=1/dg=0/wt=2/rs=AM-SdHt-wQQIfxzYeNeY7GE95hf_p6f1lQ/m=_b,_tp",
+                     "evidence":"<script noCollect src=\"https://www.gstatic.com/_/mss/boq-one-google/_/js/k=boq-one-google.OneGoogleWidgetUi.pl.m7Y8W-dCBW0.es5.O/am=WABA/d=1/excm=_b,_tp,appwidgetnoauthview/ed=1/dg=0/wt=2/rs=AM-SdHt-wQQIfxzYeNeY7GE95hf_p6f1lQ/m=_b,_tp\" async id=\"base-js\" nonce=\"gJ3X6b1mVwqAe6WHC1FEfA\"><\/script>"
+                  },
+                  {
+                     "uri":"https://ogs.google.com/widget/app/so?bc=1&origin=chrome-untrusted%3A%2F%2Fnew-tab-page&origin=chrome%3A%2F%2Fnew-tab-page&cn=app&pid=1&spid=243&hl=pl",
+                     "method":"GET",
+                     "param":"https://www.gstatic.com/_/mss/boq-one-google/_/js/k=boq-one-google.OneGoogleWidgetUi.pl.m7Y8W-dCBW0.es5.O/am=WABA/d=1/excm=_b,_tp,appwidgetnoauthview/ed=1/dg=0/wt=2/rs=AM-SdHt-wQQIfxzYeNeY7GE95hf_p6f1lQ/m=_b,_tp",
+                     "evidence":"<script noCollect src=\"https://www.gstatic.com/_/mss/boq-one-google/_/js/k=boq-one-google.OneGoogleWidgetUi.pl.m7Y8W-dCBW0.es5.O/am=WABA/d=1/excm=_b,_tp,appwidgetnoauthview/ed=1/dg=0/wt=2/rs=AM-SdHt-wQQIfxzYeNeY7GE95hf_p6f1lQ/m=_b,_tp\" async id=\"base-js\" nonce=\"9Yfd6ua3VJ0V3Al53pSIKw\"><\/script>"
+                  }
+               ],
+               "count":"2",
+               "solution":"<p>Ensure JavaScript source files are loaded from only trusted sources, and the sources can't be controlled by end users of the application.<\/p>",
+               "reference":"<p><\/p>",
+               "cweid":"829",
+               "wascid":"15",
+               "sourceid":"3"
+            },
+            {
+               "pluginid":"10010",
+               "alertRef":"10010",
+               "alert":"Cookie No HttpOnly Flag",
+               "name":"Cookie No HttpOnly Flag",
+               "riskcode":"1",
+               "confidence":"2",
+               "riskdesc":"Low (Medium)",
+               "desc":"<p>A cookie has been set without the HttpOnly flag, which means that the cookie can be accessed by JavaScript. If a malicious script can be run on this page then the cookie will be accessible and can be transmitted to another site. If this is a session cookie then session hijacking may be possible.<\/p>",
+               "instances":[
+                  {
+                     "uri":"https://ogs.google.com/widget/app/so?bc=1&origin=chrome-untrusted%3A%2F%2Fnew-tab-page&origin=chrome%3A%2F%2Fnew-tab-page&cn=app&pid=1&spid=243&hl=pl",
+                     "method":"GET",
+                     "param":"CONSENT",
+                     "evidence":"Set-Cookie: CONSENT"
+                  }
+               ],
+               "count":"1",
+               "solution":"<p>Ensure that the HttpOnly flag is set for all cookies.<\/p>",
+               "reference":"<p>https://owasp.org/www-community/HttpOnly<\/p>",
+               "cweid":"16",
+               "wascid":"13",
+               "sourceid":"3"
+            }
+         ]
+      },
+      {
+         "@name":"https://apis.google.com",
+         "@host":"apis.google.com",
+         "@port":"443",
+         "@ssl":"true",
+         "alerts":[
+            {
+               "pluginid":"10096",
+               "alertRef":"10096",
+               "alert":"Timestamp Disclosure - Unix",
+               "name":"Timestamp Disclosure - Unix",
+               "riskcode":"0",
+               "confidence":"1",
+               "riskdesc":"Informational (Low)",
+               "desc":"<p>A timestamp was disclosed by the application/web server - Unix<\/p>",
+               "instances":[
+                  {
+                     "uri":"https://apis.google.com/_/scs/abc-static/_/js/k=gapi.gapi.en.jcYff4gdSOQ.O/m=gapi_iframes,googleapis_client/rt=j/sv=1/d=1/ed=1/rs=AHpOoo_CvAHQybwQAZJQL2tdeysMj0HgHw/cb=gapi.loaded_0",
+                     "method":"GET",
+                     "evidence":"271733878"
+                  },
+                  {
+                     "uri":"https://apis.google.com/_/scs/abc-static/_/js/k=gapi.gapi.en.jcYff4gdSOQ.O/m=gapi_iframes,googleapis_client/rt=j/sv=1/d=1/ed=1/rs=AHpOoo_CvAHQybwQAZJQL2tdeysMj0HgHw/cb=gapi.loaded_0",
+                     "method":"GET",
+                     "evidence":"1732584193"
+                  },
+                  {
+                     "uri":"https://apis.google.com/_/scs/abc-static/_/js/k=gapi.gapi.en.jcYff4gdSOQ.O/m=gapi_iframes,googleapis_client/rt=j/sv=1/d=1/ed=1/rs=AHpOoo_CvAHQybwQAZJQL2tdeysMj0HgHw/cb=gapi.loaded_0",
+                     "method":"GET",
+                     "evidence":"1859775393"
+                  },
+                  {
+                     "uri":"https://apis.google.com/_/scs/abc-static/_/js/k=gapi.gapi.en.jcYff4gdSOQ.O/m=gapi_iframes,googleapis_client/rt=j/sv=1/d=1/ed=1/rs=AHpOoo_CvAHQybwQAZJQL2tdeysMj0HgHw/cb=gapi.loaded_0",
+                     "method":"GET",
+                     "evidence":"1518500249"
+                  }
+               ],
+               "count":"4",
+               "solution":"<p>Manually confirm that the timestamp data is not sensitive, and that the data cannot be aggregated to disclose exploitable patterns.<\/p>",
+               "otherinfo":"<p>271733878, which evaluates to: 1978-08-12 02:37:58<\/p>",
+               "reference":"<p>http://projects.webappsec.org/w/page/13246936/Information%20Leakage<\/p>",
+               "cweid":"200",
+               "wascid":"13",
+               "sourceid":"3"
+            },
+            {
+               "pluginid":"10027",
+               "alertRef":"10027",
+               "alert":"Information Disclosure - Suspicious Comments",
+               "name":"Information Disclosure - Suspicious Comments",
+               "riskcode":"0",
+               "confidence":"1",
+               "riskdesc":"Informational (Low)",
+               "desc":"<p>The response appears to contain suspicious comments which may help an attacker. Note: Matches made within script blocks or files are against the entire content not only comments.<\/p>",
+               "instances":[
+                  {
+                     "uri":"https://apis.google.com/_/scs/abc-static/_/js/k=gapi.gapi.en.jcYff4gdSOQ.O/m=gapi_iframes,googleapis_client/rt=j/sv=1/d=1/ed=1/rs=AHpOoo_CvAHQybwQAZJQL2tdeysMj0HgHw/cb=gapi.loaded_0",
+                     "method":"GET",
+                     "evidence":"from"
+                  },
+                  {
+                     "uri":"https://apis.google.com/_/scs/abc-static/_/js/k=gapi.gapi.en.jcYff4gdSOQ.O/m=gapi_iframes,googleapis_client/rt=j/sv=1/d=1/ed=1/rs=AHpOoo_CvAHQybwQAZJQL2tdeysMj0HgHw/cb=gapi.loaded_0",
+                     "method":"GET",
+                     "evidence":"where"
+                  },
+                  {
+                     "uri":"https://apis.google.com/_/scs/abc-static/_/js/k=gapi.gapi.en.jcYff4gdSOQ.O/m=gapi_iframes,googleapis_client/rt=j/sv=1/d=1/ed=1/rs=AHpOoo_CvAHQybwQAZJQL2tdeysMj0HgHw/cb=gapi.loaded_0",
+                     "method":"GET",
+                     "evidence":"db"
+                  },
+                  {
+                     "uri":"https://apis.google.com/_/scs/abc-static/_/js/k=gapi.gapi.en.jcYff4gdSOQ.O/m=gapi_iframes,googleapis_client/rt=j/sv=1/d=1/ed=1/rs=AHpOoo_CvAHQybwQAZJQL2tdeysMj0HgHw/cb=gapi.loaded_0",
+                     "method":"GET",
+                     "evidence":"query"
+                  }
+               ],
+               "count":"4",
+               "solution":"<p>Remove all comments that return information that may help an attacker and fix any underlying problems they refer to.<\/p>",
+               "otherinfo":"<p>The following pattern was used: \\bFROM\\b and was detected in the element starting with: \"ua(\"Array.from\",function(a){return a?a:function(b,c,d){c=null!=c?c:function(k){return k};var e=[],f=\"undefined\"!=typeof Symbol&&\", see evidence field for the suspicious comment/snippet.<\/p>",
+               "reference":"<p><\/p>",
+               "cweid":"200",
+               "wascid":"13",
+               "sourceid":"3"
+            }
+         ]
+      },
+      {
+         "@name":"https://www.gstatic.com",
+         "@host":"www.gstatic.com",
+         "@port":"443",
+         "@ssl":"true",
+         "alerts":[
+            {
+               "pluginid":"10096",
+               "alertRef":"10096",
+               "alert":"Timestamp Disclosure - Unix",
+               "name":"Timestamp Disclosure - Unix",
+               "riskcode":"0",
+               "confidence":"1",
+               "riskdesc":"Informational (Low)",
+               "desc":"<p>A timestamp was disclosed by the application/web server - Unix<\/p>",
+               "instances":[
+                  {
+                     "uri":"https://www.gstatic.com/og/_/js/k=og.qtm.en_US.3gGou_DPQGQ.O/rt=j/m=q_d,qmd,qcwid,qmutsd,qapid,qald/exm=qaaw,qabr,qadd,qaid,qalo,qebr,qein,qhaw,qhbr,qhch,qhga,qhid,qhin,qhlo,qhmn,qhpc,qhpr,qhsf,qhtt/d=1/ed=1/rs=AA2YrTuZTrLZ4SHM1gfcCFFxdZIZ-5oj0Q",
+                     "method":"GET",
+                     "evidence":"1732584193"
+                  },
+                  {
+                     "uri":"https://www.gstatic.com/og/_/js/k=og.qtm.en_US.3gGou_DPQGQ.O/rt=j/m=q_d,qmd,qcwid,qmutsd,qapid,qald/exm=qaaw,qabr,qadd,qaid,qalo,qebr,qein,qhaw,qhbr,qhch,qhga,qhid,qhin,qhlo,qhmn,qhpc,qhpr,qhsf,qhtt/d=1/ed=1/rs=AA2YrTuZTrLZ4SHM1gfcCFFxdZIZ-5oj0Q",
+                     "method":"GET",
+                     "evidence":"1859775393"
+                  },
+                  {
+                     "uri":"https://www.gstatic.com/og/_/js/k=og.qtm.en_US.3gGou_DPQGQ.O/rt=j/m=q_d,qmd,qcwid,qmutsd,qapid,qald/exm=qaaw,qabr,qadd,qaid,qalo,qebr,qein,qhaw,qhbr,qhch,qhga,qhid,qhin,qhlo,qhmn,qhpc,qhpr,qhsf,qhtt/d=1/ed=1/rs=AA2YrTuZTrLZ4SHM1gfcCFFxdZIZ-5oj0Q",
+                     "method":"GET",
+                     "evidence":"1518500249"
+                  },
+                  {
+                     "uri":"https://www.gstatic.com/og/_/js/k=og.qtm.en_US.3gGou_DPQGQ.O/rt=j/m=q_d,qmd,qcwid,qmutsd,qapid,qald/exm=qaaw,qabr,qadd,qaid,qalo,qebr,qein,qhaw,qhbr,qhch,qhga,qhid,qhin,qhlo,qhmn,qhpc,qhpr,qhsf,qhtt/d=1/ed=1/rs=AA2YrTuZTrLZ4SHM1gfcCFFxdZIZ-5oj0Q",
+                     "method":"GET",
+                     "evidence":"175237375"
+                  },
+                  {
+                     "uri":"https://www.gstatic.com/og/_/js/k=og.qtm.en_US.3gGou_DPQGQ.O/rt=j/m=q_d,qmd,qcwid,qmutsd,qapid,qald/exm=qaaw,qabr,qadd,qaid,qalo,qebr,qein,qhaw,qhbr,qhch,qhga,qhid,qhin,qhlo,qhmn,qhpc,qhpr,qhsf,qhtt/d=1/ed=1/rs=AA2YrTuZTrLZ4SHM1gfcCFFxdZIZ-5oj0Q",
+                     "method":"GET",
+                     "evidence":"271733878"
+                  }
+               ],
+               "count":"5",
+               "solution":"<p>Manually confirm that the timestamp data is not sensitive, and that the data cannot be aggregated to disclose exploitable patterns.<\/p>",
+               "otherinfo":"<p>1732584193, which evaluates to: 2024-11-26 02:23:13<\/p>",
+               "reference":"<p>http://projects.webappsec.org/w/page/13246936/Information%20Leakage<\/p>",
+               "cweid":"200",
+               "wascid":"13",
+               "sourceid":"3"
+            },
+            {
+               "pluginid":"10027",
+               "alertRef":"10027",
+               "alert":"Information Disclosure - Suspicious Comments",
+               "name":"Information Disclosure - Suspicious Comments",
+               "riskcode":"0",
+               "confidence":"1",
+               "riskdesc":"Informational (Low)",
+               "desc":"<p>The response appears to contain suspicious comments which may help an attacker. Note: Matches made within script blocks or files are against the entire content not only comments.<\/p>",
+               "instances":[
+                  {
+                     "uri":"https://www.gstatic.com/og/_/js/k=og.qtm.en_US.3gGou_DPQGQ.O/rt=j/m=q_d,qmd,qcwid,qmutsd,qapid,qald/exm=qaaw,qabr,qadd,qaid,qalo,qebr,qein,qhaw,qhbr,qhch,qhga,qhid,qhin,qhlo,qhmn,qhpc,qhpr,qhsf,qhtt/d=1/ed=1/rs=AA2YrTuZTrLZ4SHM1gfcCFFxdZIZ-5oj0Q",
+                     "method":"GET",
+                     "evidence":"SELECT"
+                  },
+                  {
+                     "uri":"https://www.gstatic.com/og/_/js/k=og.qtm.en_US.3gGou_DPQGQ.O/rt=j/m=q_d,qmd,qcwid,qmutsd,qapid,qald/exm=qaaw,qabr,qadd,qaid,qalo,qebr,qein,qhaw,qhbr,qhch,qhga,qhid,qhin,qhlo,qhmn,qhpc,qhpr,qhsf,qhtt/d=1/ed=1/rs=AA2YrTuZTrLZ4SHM1gfcCFFxdZIZ-5oj0Q",
+                     "method":"GET",
+                     "evidence":"from"
+                  }
+               ],
+               "count":"2",
+               "solution":"<p>Remove all comments that return information that may help an attacker and fix any underlying problems they refer to.<\/p>",
+               "otherinfo":"<p>The following pattern was used: \\bSELECT\\b and was detected in the element starting with: \"!0);b.target=d;b.action=this.Fa.action;a.body.appendChild(b);c=_.le(\"SELECT\",this.Fa);e=_.le(\"SELECT\",b);f=0;for(g=c.length;f<g;\", see evidence field for the suspicious comment/snippet.<\/p>",
+               "reference":"<p><\/p>",
+               "cweid":"200",
+               "wascid":"13",
+               "sourceid":"3"
+            },
+            {
+               "pluginid":"10015",
+               "alertRef":"10015",
+               "alert":"Incomplete or No Cache-control and Pragma HTTP Header Set",
+               "name":"Incomplete or No Cache-control and Pragma HTTP Header Set",
+               "riskcode":"1",
+               "confidence":"2",
+               "riskdesc":"Low (Medium)",
+               "desc":"<p>The cache-control and pragma HTTP header have not been set properly or are missing allowing the browser and proxies to cache content.<\/p>",
+               "instances":[
+                  {
+                     "uri":"https://www.gstatic.com/og/_/ss/k=og.qtm.PoHfeJrvkfI.L.W.O/m=qmd,qcwid/excm=qaaw,qabr,qadd,qaid,qalo,qebr,qein,qhaw,qhbr,qhch,qhga,qhid,qhin,qhlo,qhmn,qhpc,qhpr,qhsf,qhtt/d=1/ed=1/ct=zgms/rs=AA2YrTtlkmhqEx9CuPzOCQfBhsNqzgdKAw",
+                     "method":"GET",
+                     "param":"Cache-Control",
+                     "evidence":"public, max-age=31536000"
+                  }
+               ],
+               "count":"1",
+               "solution":"<p>Whenever possible ensure the cache-control HTTP header is set with no-cache, no-store, must-revalidate; and that the pragma HTTP header is set with no-cache.<\/p>",
+               "reference":"<p>https://cheatsheetseries.owasp.org/cheatsheets/Session_Management_Cheat_Sheet.html#web-content-caching<\/p>",
+               "cweid":"525",
+               "wascid":"13",
+               "sourceid":"3"
+            }
+         ]
+      },
+      {
+         "@name":"https://www.google.com",
+         "@host":"www.google.com",
+         "@port":"443",
+         "@ssl":"true",
+         "alerts":[
+            {
+               "pluginid":"90033",
+               "alertRef":"90033",
+               "alert":"Loosely Scoped Cookie",
+               "name":"Loosely Scoped Cookie",
+               "riskcode":"0",
+               "confidence":"1",
+               "riskdesc":"Informational (Low)",
+               "desc":"<p>Cookies can be scoped by domain or path. This check is only concerned with domain scope.The domain scope applied to a cookie determines which domains can access it. For example, a cookie can be scoped strictly to a subdomain e.g. www.nottrusted.com, or loosely scoped to a parent domain e.g. nottrusted.com. In the latter case, any subdomain of nottrusted.com can access the cookie. Loosely scoped cookies are common in mega-applications like google.com and live.com. Cookies set from a subdomain like app.foo.bar are transmitted only to that domain by the browser. However, cookies scoped to a parent-level domain may be transmitted to the parent, or any subdomain of the parent.<\/p>",
+               "instances":[
+                  {
+                     "uri":"https://www.google.com/async/newtab_ogb?hl=pl&async=fixed:0",
+                     "method":"GET"
+                  },
+                  {
+                     "uri":"https://www.google.com/async/newtab_promos",
+                     "method":"GET"
+                  },
+                  {
+                     "uri":"https://www.google.com/async/newtab_ogb?hl=pl&async=fixed:0",
+                     "method":"GET"
+                  },
+                  {
+                     "uri":"https://www.google.com/async/newtab_promos",
+                     "method":"GET"
+                  },
+                  {
+                     "uri":"https://www.google.com/async/ddljson?async=ntp:2",
+                     "method":"GET"
+                  },
+                  {
+                     "uri":"https://www.google.com/async/ddljson?async=ntp:2",
+                     "method":"GET"
+                  }
+               ],
+               "count":"6",
+               "solution":"<p>Always scope cookies to a FQDN (Fully Qualified Domain Name).<\/p>",
+               "otherinfo":"<p>The origin domain used for comparison was: <\/p><p>www.google.com<\/p><p>CONSENT=PENDING+183<\/p><p><\/p>",
+               "reference":"<p>https://tools.ietf.org/html/rfc6265#section-4.1<\/p><p>https://owasp.org/www-project-web-security-testing-guide/v41/4-Web_Application_Security_Testing/06-Session_Management_Testing/02-Testing_for_Cookies_Attributes.html<\/p><p>http://code.google.com/p/browsersec/wiki/Part2#Same-origin_policy_for_cookies<\/p>",
+               "cweid":"565",
+               "wascid":"15",
+               "sourceid":"3"
+            },
+            {
+               "pluginid":"10011",
+               "alertRef":"10011",
+               "alert":"Cookie Without Secure Flag",
+               "name":"Cookie Without Secure Flag",
+               "riskcode":"1",
+               "confidence":"2",
+               "riskdesc":"Low (Medium)",
+               "desc":"<p>A cookie has been set without the secure flag, which means that the cookie can be accessed via unencrypted connections.<\/p>",
+               "instances":[
+                  {
+                     "uri":"https://www.google.com/async/newtab_promos",
+                     "method":"GET",
+                     "param":"CONSENT",
+                     "evidence":"Set-Cookie: CONSENT"
+                  },
+                  {
+                     "uri":"https://www.google.com/async/ddljson?async=ntp:2",
+                     "method":"GET",
+                     "param":"CONSENT",
+                     "evidence":"Set-Cookie: CONSENT"
+                  },
+                  {
+                     "uri":"https://www.google.com/async/newtab_ogb?hl=pl&async=fixed:0",
+                     "method":"GET",
+                     "param":"CONSENT",
+                     "evidence":"Set-Cookie: CONSENT"
+                  }
+               ],
+               "count":"3",
+               "solution":"<p>Whenever a cookie contains sensitive information or is a session token, then it should always be passed using an encrypted channel. Ensure that the secure flag is set for cookies containing such sensitive information.<\/p>",
+               "reference":"<p>https://owasp.org/www-project-web-security-testing-guide/v41/4-Web_Application_Security_Testing/06-Session_Management_Testing/02-Testing_for_Cookies_Attributes.html<\/p>",
+               "cweid":"614",
+               "wascid":"13",
+               "sourceid":"3"
+            },
+            {
+               "pluginid":"10096",
+               "alertRef":"10096",
+               "alert":"Timestamp Disclosure - Unix",
+               "name":"Timestamp Disclosure - Unix",
+               "riskcode":"0",
+               "confidence":"1",
+               "riskdesc":"Informational (Low)",
+               "desc":"<p>A timestamp was disclosed by the application/web server - Unix<\/p>",
+               "instances":[
+                  {
+                     "uri":"https://www.google.com/async/newtab_ogb?hl=pl&async=fixed:0",
+                     "method":"GET",
+                     "evidence":"2147483647"
+                  },
+                  {
+                     "uri":"https://www.google.com/search?q=klimaczk+wodna&oq=klimaczk+wodna+&aqs=chrome..69i57.17987j0j7&sourceid=chrome&ie=UTF-8",
+                     "method":"GET",
+                     "evidence":"21600000"
+                  },
+                  {
+                     "uri":"https://www.google.com/search?q=klimaczk+wodna&oq=klimaczk+wodna+&aqs=chrome..69i57.17987j0j7&sourceid=chrome&ie=UTF-8",
+                     "method":"GET",
+                     "evidence":"416666667"
+                  },
+                  {
+                     "uri":"https://www.google.com/search?q=klimaczk+wodna&oq=klimaczk+wodna+&aqs=chrome..69i57.17987j0j7&sourceid=chrome&ie=UTF-8",
+                     "method":"GET",
+                     "evidence":"20210415"
+                  },
+                  {
+                     "uri":"https://www.google.com/search?q=klimaczk+wodna&oq=klimaczk+wodna+&aqs=chrome..69i57.17987j0j7&sourceid=chrome&ie=UTF-8",
+                     "method":"GET",
+                     "evidence":"22000000"
+                  },
+                  {
+                     "uri":"https://www.google.com/async/newtab_ogb?hl=pl&async=fixed:0",
+                     "method":"GET",
+                     "evidence":"416666667"
+                  },
+                  {
+                     "uri":"https://www.google.com/search?q=klimaczk+wodna&oq=klimaczk+wodna+&aqs=chrome..69i57.17987j0j7&sourceid=chrome&ie=UTF-8",
+                     "method":"GET",
+                     "evidence":"175243985"
+                  },
+                  {
+                     "uri":"https://www.google.com/search?q=klimaczk+wodna&oq=klimaczk+wodna+&aqs=chrome..69i57.17987j0j7&sourceid=chrome&ie=UTF-8",
+                     "method":"GET",
+                     "evidence":"23000000"
+                  },
+                  {
+                     "uri":"https://www.google.com/async/newtab_ogb?hl=pl&async=fixed:0",
+                     "method":"GET",
+                     "evidence":"22000000"
+                  },
+                  {
+                     "uri":"https://www.google.com/async/ddljson?async=ntp:2",
+                     "method":"GET",
+                     "evidence":"368585748"
+                  },
+                  {
+                     "uri":"https://www.google.com/async/newtab_promos",
+                     "method":"GET",
+                     "evidence":"368585748"
+                  },
+                  {
+                     "uri":"https://www.google.com/search?q=klimaczk+wodna&oq=klimaczk+wodna+&aqs=chrome..69i57.17987j0j7&sourceid=chrome&ie=UTF-8",
+                     "method":"GET",
+                     "evidence":"369134291"
+                  },
+                  {
+                     "uri":"https://www.google.com/async/newtab_ogb?hl=pl&async=fixed:0",
+                     "method":"GET",
+                     "evidence":"369134291"
+                  },
+                  {
+                     "uri":"https://www.google.com/async/newtab_ogb?hl=pl&async=fixed:0",
+                     "method":"GET",
+                     "evidence":"368585748"
+                  },
+                  {
+                     "uri":"https://www.google.com/search?q=klimaczk+wodna&oq=klimaczk+wodna+&aqs=chrome..69i57.17987j0j7&sourceid=chrome&ie=UTF-8",
+                     "method":"GET",
+                     "evidence":"17996662"
+                  },
+                  {
+                     "uri":"https://www.google.com/search?q=klimaczk+wodna&oq=klimaczk+wodna+&aqs=chrome..69i57.17987j0j7&sourceid=chrome&ie=UTF-8",
+                     "method":"GET",
+                     "evidence":"14000000"
+                  },
+                  {
+                     "uri":"https://www.google.com/async/newtab_ogb?hl=pl&async=fixed:0",
+                     "method":"GET",
+                     "evidence":"14000000"
+                  }
+               ],
+               "count":"17",
+               "solution":"<p>Manually confirm that the timestamp data is not sensitive, and that the data cannot be aggregated to disclose exploitable patterns.<\/p>",
+               "otherinfo":"<p>2147483647, which evaluates to: 2038-01-19 04:14:07<\/p>",
+               "reference":"<p>http://projects.webappsec.org/w/page/13246936/Information%20Leakage<\/p>",
+               "cweid":"200",
+               "wascid":"13",
+               "sourceid":"3"
+            },
+            {
+               "pluginid":"10021",
+               "alertRef":"10021",
+               "alert":"X-Content-Type-Options Header Missing",
+               "name":"X-Content-Type-Options Header Missing",
+               "riskcode":"1",
+               "confidence":"2",
+               "riskdesc":"Low (Medium)",
+               "desc":"<p>The Anti-MIME-Sniffing header X-Content-Type-Options was not set to 'nosniff'. This allows older versions of Internet Explorer and Chrome to perform MIME-sniffing on the response body, potentially causing the response body to be interpreted and displayed as a content type other than the declared content type. Current (early 2014) and legacy versions of Firefox will use the declared content type (if one is set), rather than performing MIME-sniffing.<\/p>",
+               "instances":[
+                  {
+                     "uri":"https://www.google.com/search?q=klimaczk+wodna&oq=klimaczk+wodna+&aqs=chrome..69i57.17987j0j7&sourceid=chrome&ie=UTF-8",
+                     "method":"GET",
+                     "param":"X-Content-Type-Options"
+                  }
+               ],
+               "count":"1",
+               "solution":"<p>Ensure that the application/web server sets the Content-Type header appropriately, and that it sets the X-Content-Type-Options header to 'nosniff' for all web pages.<\/p><p>If possible, ensure that the end user uses a standards-compliant and modern web browser that does not perform MIME-sniffing at all, or that can be directed by the web application/web server to not perform MIME-sniffing.<\/p>",
+               "otherinfo":"<p>This issue still applies to error type pages (401, 403, 500, etc.) as those pages are often still affected by injection issues, in which case there is still concern for browsers sniffing pages away from their actual content type.<\/p><p>At \"High\" threshold this scan rule will not alert on client or server error responses.<\/p>",
+               "reference":"<p>http://msdn.microsoft.com/en-us/library/ie/gg622941%28v=vs.85%29.aspx<\/p><p>https://owasp.org/www-community/Security_Headers<\/p>",
+               "cweid":"16",
+               "wascid":"15",
+               "sourceid":"3"
+            },
+            {
+               "pluginid":"10015",
+               "alertRef":"10015",
+               "alert":"Incomplete or No Cache-control and Pragma HTTP Header Set",
+               "name":"Incomplete or No Cache-control and Pragma HTTP Header Set",
+               "riskcode":"1",
+               "confidence":"2",
+               "riskdesc":"Low (Medium)",
+               "desc":"<p>The cache-control and pragma HTTP header have not been set properly or are missing allowing the browser and proxies to cache content.<\/p>",
+               "instances":[
+                  {
+                     "uri":"https://www.google.com/search?q=klimaczk+wodna&oq=klimaczk+wodna+&aqs=chrome..69i57.17987j0j7&sourceid=chrome&ie=UTF-8",
+                     "method":"GET",
+                     "param":"Cache-Control",
+                     "evidence":"private, max-age=0"
+                  },
+                  {
+                     "uri":"https://www.google.com/async/newtab_promos",
+                     "method":"GET",
+                     "param":"Cache-Control",
+                     "evidence":"private"
+                  },
+                  {
+                     "uri":"https://www.google.com/async/newtab_ogb?hl=pl&async=fixed:0",
+                     "method":"GET",
+                     "param":"Cache-Control",
+                     "evidence":"private"
+                  },
+                  {
+                     "uri":"https://www.google.com/async/ddljson?async=ntp:2",
+                     "method":"GET",
+                     "param":"Cache-Control",
+                     "evidence":"private"
+                  }
+               ],
+               "count":"4",
+               "solution":"<p>Whenever possible ensure the cache-control HTTP header is set with no-cache, no-store, must-revalidate; and that the pragma HTTP header is set with no-cache.<\/p>",
+               "reference":"<p>https://cheatsheetseries.owasp.org/cheatsheets/Session_Management_Cheat_Sheet.html#web-content-caching<\/p>",
+               "cweid":"525",
+               "wascid":"13",
+               "sourceid":"3"
+            },
+            {
+               "pluginid":"10010",
+               "alertRef":"10010",
+               "alert":"Cookie No HttpOnly Flag",
+               "name":"Cookie No HttpOnly Flag",
+               "riskcode":"1",
+               "confidence":"2",
+               "riskdesc":"Low (Medium)",
+               "desc":"<p>A cookie has been set without the HttpOnly flag, which means that the cookie can be accessed by JavaScript. If a malicious script can be run on this page then the cookie will be accessible and can be transmitted to another site. If this is a session cookie then session hijacking may be possible.<\/p>",
+               "instances":[
+                  {
+                     "uri":"https://www.google.com/async/newtab_ogb?hl=pl&async=fixed:0",
+                     "method":"GET",
+                     "param":"CONSENT",
+                     "evidence":"Set-Cookie: CONSENT"
+                  },
+                  {
+                     "uri":"https://www.google.com/async/ddljson?async=ntp:2",
+                     "method":"GET",
+                     "param":"CONSENT",
+                     "evidence":"Set-Cookie: CONSENT"
+                  },
+                  {
+                     "uri":"https://www.google.com/async/newtab_promos",
+                     "method":"GET",
+                     "param":"CONSENT",
+                     "evidence":"Set-Cookie: CONSENT"
+                  }
+               ],
+               "count":"3",
+               "solution":"<p>Ensure that the HttpOnly flag is set for all cookies.<\/p>",
+               "reference":"<p>https://owasp.org/www-community/HttpOnly<\/p>",
+               "cweid":"16",
+               "wascid":"13",
+               "sourceid":"3"
+            },
+            {
+               "pluginid":"10027",
+               "alertRef":"10027",
+               "alert":"Information Disclosure - Suspicious Comments",
+               "name":"Information Disclosure - Suspicious Comments",
+               "riskcode":"0",
+               "confidence":"1",
+               "riskdesc":"Informational (Low)",
+               "desc":"<p>The response appears to contain suspicious comments which may help an attacker. Note: Matches made within script blocks or files are against the entire content not only comments.<\/p>",
+               "instances":[
+                  {
+                     "uri":"https://www.google.com/search?q=klimaczk+wodna&oq=klimaczk+wodna+&aqs=chrome..69i57.17987j0j7&sourceid=chrome&ie=UTF-8",
+                     "method":"GET",
+                     "evidence":"db"
+                  }
+               ],
+               "count":"1",
+               "solution":"<p>Remove all comments that return information that may help an attacker and fix any underlying problems they refer to.<\/p>",
+               "otherinfo":"<p>The following pattern was used: \\bDB\\b and was detected in the element starting with: \"<script nonce=\"2bZF80ahXsj+HIXGPOKC0A==\">(function(){var u='/xjs/_/js/k\\x3dxjs.s.pl.4hFIG2glCAw.O/m\\x3dZyRBae,cdos,dpf,hsm,jsa,d\", see evidence field for the suspicious comment/snippet.<\/p>",
+               "reference":"<p><\/p>",
+               "cweid":"200",
+               "wascid":"13",
+               "sourceid":"3"
+            },
+            {
+               "pluginid":"10054",
+               "alertRef":"10054",
+               "alert":"Cookie Without SameSite Attribute",
+               "name":"Cookie Without SameSite Attribute",
+               "riskcode":"1",
+               "confidence":"2",
+               "riskdesc":"Low (Medium)",
+               "desc":"<p>A cookie has been set without the SameSite attribute, which means that the cookie can be sent as a result of a 'cross-site' request. The SameSite attribute is an effective counter measure to cross-site request forgery, cross-site script inclusion, and timing attacks.<\/p>",
+               "instances":[
+                  {
+                     "uri":"https://www.google.com/async/newtab_ogb?hl=pl&async=fixed:0",
+                     "method":"GET",
+                     "param":"CONSENT",
+                     "evidence":"Set-Cookie: CONSENT"
+                  },
+                  {
+                     "uri":"https://www.google.com/async/ddljson?async=ntp:2",
+                     "method":"GET",
+                     "param":"CONSENT",
+                     "evidence":"Set-Cookie: CONSENT"
+                  },
+                  {
+                     "uri":"https://www.google.com/async/newtab_promos",
+                     "method":"GET",
+                     "param":"CONSENT",
+                     "evidence":"Set-Cookie: CONSENT"
+                  }
+               ],
+               "count":"3",
+               "solution":"<p>Ensure that the SameSite attribute is set to either 'lax' or ideally 'strict' for all cookies.<\/p>",
+               "reference":"<p>https://tools.ietf.org/html/draft-ietf-httpbis-cookie-same-site<\/p>",
+               "cweid":"16",
+               "wascid":"13",
+               "sourceid":"3"
+            },
+            {
+               "pluginid":"10202",
+               "alertRef":"10202",
+               "alert":"Absence of Anti-CSRF Tokens",
+               "name":"Absence of Anti-CSRF Tokens",
+               "riskcode":"1",
+               "confidence":"2",
+               "riskdesc":"Low (Medium)",
+               "desc":"<p>No Anti-CSRF tokens were found in a HTML submission form.<\/p><p>Cross-site request forgery jest atakiem, który obejmuje zmuszanie ofiary do wysłania żądania HTTP do miejsca celowego bez ich wiedzy lub intencji w celu przeprowadzenia akcji jako ofiara. Podstawową przyczyną jest powtarzalność działania aplikacji z przewidywalnymi adresami URL / formularzami. Charakterem ataku jest to, że CSRF wykorzystuje zaufanie, jakie witryna darzy użytkownika. Natomiast skrypty cross-site scripting (XSS) wykorzystują zaufanie, jakim użytkownik darzy stronę internetową. Podobnie jak w przypadku XSS, ataki CSRF niekoniecznie muszą być przekierowane na drugą stronę, ale mogą być. Cross-site request forgery jest również znane jako CSRF, XSRF, atak za jednym kliknięciem, jazda na sesjach, zdezorientowany delegat i surfowanie po morzu.<\/p><p><\/p><p>Ataki CSRF są skuteczne w wielu sytuacjach, w tym:<\/p><p>    * Ofiara ma aktywną sesję w witrynie docelowej.<\/p><p>    * Ofiara jest uwierzytelniona za pośrednictwem protokołu HTTP w witrynie docelowej.<\/p><p>    * Ofiara jest w tej samej sieci lokalnej co strona docelowa.<\/p><p><\/p><p>CSRF został użyty przede wszystkim do wykonania akcji przeciwko witrynie docelowej z wykorzystaniem przywilejów ofiary, ale odkryto najnowsze techniki udostępniania informacji poprzez uzyskanie dostępu do odpowiedzi. Ryzyko udostępnienia informacji dramatycznie wzrasta kiedy strona celu jest podatna na XSS, ponieważ XSS może być użyty jako platforma dla CSRF, włączając w to atak obsługiwany w granicach polityki tego samego pochodzenia.<\/p>",
+               "instances":[
+                  {
+                     "uri":"https://www.google.com/search?q=klimaczk+wodna&oq=klimaczk+wodna+&aqs=chrome..69i57.17987j0j7&sourceid=chrome&ie=UTF-8",
+                     "method":"GET",
+                     "evidence":"<form class=\"tsf\" action=\"/search\" id=\"tsf\" data-submitfalse=\"q\" method=\"GET\" name=\"f\" role=\"search\">"
+                  }
+               ],
+               "count":"1",
+               "solution":"<p>Faza: Architektura i Projektowanie<\/p><p>Używaj sprawdzonej biblioteki lub struktury, które nie pozwalają na wystąpienie tego osłabienia lub wprowadzają konstrukcje, które sprawiają, że to osłabienie jest łatwiejsze do uniknięcia.<\/p><p>Na przykład, używaj pakietów anty-CSRF takich jak OWASP CSRFGuard.<\/p><p><\/p><p>Faza: Implementacja<\/p><p>Upewnij się, że twoja aplikacja jest wolna od kwestii cross-site scripting, ponieważ większość obron CSRF mogą być ominięte przez kontrolowany przez atakującego skrypt.<\/p><p><\/p><p>Fazy: Architektura i Projektowanie<\/p><p>Wygeneruj unikalny numer dla każdego formularza, umieść go w formularzu i zweryfikuj wartość jednorazową po otrzymaniu formularza. Upewnij się, że liczba nie będzie przewidywalna (CWE-330).<\/p><p>Zwróć uwagę na to, że może to być ominięte używając XSS.<\/p><p><\/p><p>Identyfikuj zwłaszcza niebezpieczne działania. Kiedy użytkownik przeprowadza niebezpieczną operację, wyślij odrębne żądanie potwierdzenia by upewnić się, że użytkownik jest przeznaczony do przeprowadzenia tego działania.<\/p><p>Zwróć uwagę na to, że może to być ominięte używając XSS.<\/p><p><\/p><p>Używaj regulacji Zarządzania Sesją ESAPI.<\/p><p>Ta kontrola obejmuje komponent dla CSRF.<\/p><p><\/p><p>Nie używaj metody GET dla żadnego żądania, która uruchamia zmianę stanu.<\/p><p><\/p><p>Faza: Implementacja<\/p><p>Sprawdź nagłówek HTTP Referer, aby sprawdzić, czy żądanie pochodzi z oczekiwanej strony. To mogłoby przerwać prawowitą funkcjonalność, ponieważ użytkownicy lub proxy mogłyby zostać wyłączone wysyłając dla Referer prywatnych powodów.<\/p>",
+               "otherinfo":"<p>No known Anti-CSRF token [anticsrf, CSRFToken, __RequestVerificationToken, csrfmiddlewaretoken, authenticity_token, OWASP_CSRFTOKEN, anoncsrf, csrf_token, _csrf, _csrfSecret, __csrf_magic, CSRF] was found in the following HTML form: [Form 1: \"q\" \"ei\" \"iflsig\" ].<\/p>",
+               "reference":"<p>http://projects.webappsec.org/Cross-Site-Request-Forgery<\/p><p>http://cwe.mitre.org/data/definitions/352.html<\/p>",
+               "cweid":"352",
+               "wascid":"9",
+               "sourceid":"3"
+            }
+         ]
+      },
+      {
+         "@name":"https://update.googleapis.com",
+         "@host":"update.googleapis.com",
+         "@port":"443",
+         "@ssl":"true",
+         "alerts":[
+            {
+               "pluginid":"10096",
+               "alertRef":"10096",
+               "alert":"Timestamp Disclosure - Unix",
+               "name":"Timestamp Disclosure - Unix",
+               "riskcode":"0",
+               "confidence":"1",
+               "riskdesc":"Informational (Low)",
+               "desc":"<p>A timestamp was disclosed by the application/web server - Unix<\/p>",
+               "instances":[
+                  {
+                     "uri":"https://update.googleapis.com/service/update2/json?cup2key=10:556507525&cup2hreq=d0adebf5f77d50c835d9d9e092c821b8dcdeaa11a2ef838f02a2c88cd1331c0a",
+                     "method":"POST",
+                     "evidence":"20210420"
+                  },
+                  {
+                     "uri":"https://update.googleapis.com/service/update2/json?cup2key=10:556507525&cup2hreq=d0adebf5f77d50c835d9d9e092c821b8dcdeaa11a2ef838f02a2c88cd1331c0a",
+                     "method":"POST",
+                     "evidence":"370253383"
+                  }
+               ],
+               "count":"2",
+               "solution":"<p>Manually confirm that the timestamp data is not sensitive, and that the data cannot be aggregated to disclose exploitable patterns.<\/p>",
+               "otherinfo":"<p>20210420, which evaluates to: 1970-08-22 23:00:20<\/p>",
+               "reference":"<p>http://projects.webappsec.org/w/page/13246936/Information%20Leakage<\/p>",
+               "cweid":"200",
+               "wascid":"13",
+               "sourceid":"3"
+            }
+         ]
+      },
+      {
+         "@name":"http://localhost:8000",
+         "@host":"localhost",
+         "@port":"8000",
+         "@ssl":"false",
+         "alerts":[
+            {
+               "pluginid":"10027",
+               "alertRef":"10027",
+               "alert":"Information Disclosure - Suspicious Comments",
+               "name":"Information Disclosure - Suspicious Comments",
+               "riskcode":"0",
+               "confidence":"1",
+               "riskdesc":"Informational (Low)",
+               "desc":"<p>The response appears to contain suspicious comments which may help an attacker. Note: Matches made within script blocks or files are against the entire content not only comments.<\/p>",
+               "instances":[
+                  {
+                     "uri":"http://localhost:8000/admin/login/?next=/admin/",
+                     "method":"GET",
+                     "evidence":"admin"
+                  },
+                  {
+                     "uri":"http://localhost:8000/static/admin/js/vendor/jquery/jquery.js",
+                     "method":"GET",
+                     "evidence":"bugs"
+                  },
+                  {
+                     "uri":"http://localhost:8000/static/admin/js/change_form.js",
+                     "method":"GET",
+                     "evidence":"SELECT"
+                  },
+                  {
+                     "uri":"http://localhost:8000/admin/logic/product/add/",
+                     "method":"GET",
+                     "evidence":"admin"
+                  },
+                  {
+                     "uri":"http://localhost:8000/static/admin/js/vendor/jquery/jquery.js",
+                     "method":"GET",
+                     "evidence":"where"
+                  },
+                  {
+                     "uri":"http://localhost:8000/admin/login/?next=/admin/logic/productincart/",
+                     "method":"GET",
+                     "evidence":"admin"
+                  },
+                  {
+                     "uri":"http://localhost:8000/admin/logic/productincart/",
+                     "method":"GET",
+                     "evidence":"admin"
+                  },
+                  {
+                     "uri":"http://localhost:8000/static/admin/js/vendor/jquery/jquery.js",
+                     "method":"GET",
+                     "evidence":"from"
+                  },
+                  {
+                     "uri":"http://localhost:8000/static/admin/js/actions.js",
+                     "method":"GET",
+                     "evidence":"select"
+                  },
+                  {
+                     "uri":"http://localhost:8000/static/admin/js/change_form.js",
+                     "method":"GET",
+                     "evidence":"admin"
+                  },
+                  {
+                     "uri":"http://localhost:8000/static/admin/js/core.js",
+                     "method":"GET",
+                     "evidence":"from"
+                  },
+                  {
+                     "uri":"http://localhost:8000/static/admin/js/vendor/jquery/jquery.js",
+                     "method":"GET",
+                     "evidence":"query"
+                  },
+                  {
+                     "uri":"http://localhost:8000/static/admin/js/vendor/jquery/jquery.js",
+                     "method":"GET",
+                     "evidence":"TODO"
+                  },
+                  {
+                     "uri":"http://localhost:8000/static/admin/js/vendor/xregexp/xregexp.js",
+                     "method":"GET",
+                     "evidence":"where"
+                  },
+                  {
+                     "uri":"http://localhost:8000/static/admin/js/vendor/jquery/jquery.js",
+                     "method":"GET",
+                     "evidence":"username"
+                  },
+                  {
+                     "uri":"http://localhost:8000/admin/logic/product/3/change/",
+                     "method":"GET",
+                     "evidence":"admin"
+                  },
+                  {
+                     "uri":"http://localhost:8000/static/admin/js/vendor/xregexp/xregexp.js",
+                     "method":"GET",
+                     "evidence":"bug"
+                  },
+                  {
+                     "uri":"http://localhost:8000/static/admin/js/nav_sidebar.js",
+                     "method":"GET",
+                     "evidence":"admin"
+                  },
+                  {
+                     "uri":"http://localhost:8000/admin/logic/product/2/change/",
+                     "method":"GET",
+                     "evidence":"admin"
+                  },
+                  {
+                     "uri":"http://localhost:8000/static/admin/js/vendor/xregexp/xregexp.js",
+                     "method":"GET",
+                     "evidence":"from"
+                  }
+               ],
+               "count":"33",
+               "solution":"<p>Remove all comments that return information that may help an attacker and fix any underlying problems they refer to.<\/p>",
+               "otherinfo":"<p>The following pattern was used: \\bADMIN\\b and was detected in the element starting with: \"<script src=\"/static/admin/js/nav_sidebar.js\" defer><\/script>\", see evidence field for the suspicious comment/snippet.<\/p>",
+               "reference":"<p><\/p>",
+               "cweid":"200",
+               "wascid":"13",
+               "sourceid":"3"
+            },
+            {
+               "pluginid":"30002",
+               "alertRef":"30002",
+               "alert":"Format String Error",
+               "name":"Format String Error",
+               "riskcode":"2",
+               "confidence":"2",
+               "riskdesc":"Medium (Medium)",
+               "desc":"<p>A Format String error occurs when the submitted data of an input string is evaluated as a command by the application. <\/p>",
+               "instances":[
+                  {
+                     "uri":"http://localhost:8000/admin/logic/product/2/change/",
+                     "method":"POST",
+                     "param":"sec-ch-ua-mobile",
+                     "attack":"ZAP %1!s%2!s%3!s%4!s%5!s%6!s%7!s%8!s%9!s%10!s%11!s%12!s%13!s%14!s%15!s%16!s%17!s%18!s%19!s%20!s%21!n%22!n%23!n%24!n%25!n%26!n%27!n%28!n%29!n%30!n%31!n%32!n%33!n%34!n%35!n%36!n%37!n%38!n%39!n%40!n\n"
+                  },
+                  {
+                     "uri":"http://localhost:8000/admin/logic/product/2/change/",
+                     "method":"POST",
+                     "param":"sec-ch-ua",
+                     "attack":"ZAP %1!s%2!s%3!s%4!s%5!s%6!s%7!s%8!s%9!s%10!s%11!s%12!s%13!s%14!s%15!s%16!s%17!s%18!s%19!s%20!s%21!n%22!n%23!n%24!n%25!n%26!n%27!n%28!n%29!n%30!n%31!n%32!n%33!n%34!n%35!n%36!n%37!n%38!n%39!n%40!n\n"
+                  },
+                  {
+                     "uri":"http://localhost:8000/admin/logic/product/2/change/",
+                     "method":"POST",
+                     "param":"Sec-Fetch-Mode",
+                     "attack":"ZAP %1!s%2!s%3!s%4!s%5!s%6!s%7!s%8!s%9!s%10!s%11!s%12!s%13!s%14!s%15!s%16!s%17!s%18!s%19!s%20!s%21!n%22!n%23!n%24!n%25!n%26!n%27!n%28!n%29!n%30!n%31!n%32!n%33!n%34!n%35!n%36!n%37!n%38!n%39!n%40!n\n"
+                  },
+                  {
+                     "uri":"http://localhost:8000/admin/logic/product/2/change/",
+                     "method":"POST",
+                     "param":"Accept-Language",
+                     "attack":"ZAP%n%s%n%s%n%s%n%s%n%s%n%s%n%s%n%s%n%s%n%s%n%s%n%s%n%s%n%s%n%s%n%s%n%s%n%s%n%s%n%s\n"
+                  }
+               ],
+               "count":"4",
+               "solution":"<p>Rewrite the background program using proper deletion of bad character strings.  This will require a recompile of the background executable.<\/p>",
+               "otherinfo":"<p>Potential Format String Error.  The script closed the connection on a microsoft format string error<\/p>",
+               "reference":"<p>https://www.owasp.org/index.php/Format_string_attack<\/p>",
+               "cweid":"134",
+               "wascid":"6",
+               "sourceid":"1"
+            },
+            {
+               "pluginid":"10010",
+               "alertRef":"10010",
+               "alert":"Cookie No HttpOnly Flag",
+               "name":"Cookie No HttpOnly Flag",
+               "riskcode":"1",
+               "confidence":"2",
+               "riskdesc":"Low (Medium)",
+               "desc":"<p>A cookie has been set without the HttpOnly flag, which means that the cookie can be accessed by JavaScript. If a malicious script can be run on this page then the cookie will be accessible and can be transmitted to another site. If this is a session cookie then session hijacking may be possible.<\/p>",
+               "instances":[
+                  {
+                     "uri":"http://localhost:8000/admin/login/?next=/admin/",
+                     "method":"POST",
+                     "param":"csrftoken",
+                     "evidence":"Set-Cookie: csrftoken"
+                  },
+                  {
+                     "uri":"http://localhost:8000/admin/logic/product/2/change/",
+                     "method":"GET",
+                     "param":"csrftoken",
+                     "evidence":"Set-Cookie: csrftoken"
+                  },
+                  {
+                     "uri":"http://localhost:8000/admin/login/?next=/admin/",
+                     "method":"GET",
+                     "param":"csrftoken",
+                     "evidence":"Set-Cookie: csrftoken"
+                  },
+                  {
+                     "uri":"http://localhost:8000/admin/login/?next=/admin/logic/productincart/",
+                     "method":"GET",
+                     "param":"csrftoken",
+                     "evidence":"Set-Cookie: csrftoken"
+                  },
+                  {
+                     "uri":"http://localhost:8000/admin/logic/product/3/change/",
+                     "method":"GET",
+                     "param":"csrftoken",
+                     "evidence":"Set-Cookie: csrftoken"
+                  },
+                  {
+                     "uri":"http://localhost:8000/admin/logic/product/",
+                     "method":"GET",
+                     "param":"csrftoken",
+                     "evidence":"Set-Cookie: csrftoken"
+                  },
+                  {
+                     "uri":"http://localhost:8000/admin/logic/productincart/2/change/",
+                     "method":"GET",
+                     "param":"csrftoken",
+                     "evidence":"Set-Cookie: csrftoken"
+                  },
+                  {
+                     "uri":"http://localhost:8000/admin/logic/productincart/",
+                     "method":"GET",
+                     "param":"csrftoken",
+                     "evidence":"Set-Cookie: csrftoken"
+                  },
+                  {
+                     "uri":"http://localhost:8000/admin/logic/product/add/",
+                     "method":"GET",
+                     "param":"csrftoken",
+                     "evidence":"Set-Cookie: csrftoken"
+                  }
+               ],
+               "count":"9",
+               "solution":"<p>Ensure that the HttpOnly flag is set for all cookies.<\/p>",
+               "reference":"<p>https://owasp.org/www-community/HttpOnly<\/p>",
+               "cweid":"16",
+               "wascid":"13",
+               "sourceid":"3"
+            },
+            {
+               "pluginid":"40018",
+               "alertRef":"40018",
+               "alert":"SQL Injection",
+               "name":"SQL Injection",
+               "riskcode":"3",
+               "confidence":"2",
+               "riskdesc":"High (Medium)",
+               "desc":"<p>SQL injection may be possible.<\/p>",
+               "instances":[
+                  {
+                     "uri":"http://localhost:8000/admin/logic/productincart/2/change/",
+                     "method":"POST",
+                     "param":"Upgrade-Insecure-Requests",
+                     "attack":"1' AND '1'='1' -- "
+                  },
+                  {
+                     "uri":"http://localhost:8000/admin/logic/product/2/change/",
+                     "method":"POST",
+                     "param":"Host",
+                     "attack":"localhost:8000 OR 1=1 -- "
+                  },
+                  {
+                     "uri":"http://localhost:8000/admin/logic/product/2/change/",
+                     "method":"POST",
+                     "param":"Origin",
+                     "attack":"https://localhost:8000' OR '1'='1' -- "
+                  },
+                  {
+                     "uri":"http://localhost:8000/admin/logic/product/2/change/",
+                     "method":"POST",
+                     "param":"Accept-Language",
+                     "attack":"pl-PL,pl;q=0.9,en-US;q=0.8,en;q=0.7' AND '1'='1' -- "
+                  },
+                  {
+                     "uri":"http://localhost:8000/admin/logic/product/2/change/",
+                     "method":"POST",
+                     "param":"Origin",
+                     "attack":"https://localhost:8000 OR 1=1 -- "
+                  },
+                  {
+                     "uri":"http://localhost:8000/admin/logic/productincart/2/change/",
+                     "method":"POST",
+                     "param":"Sec-Fetch-Mode",
+                     "attack":"navigate' AND '1'='1' -- "
+                  },
+                  {
+                     "uri":"http://localhost:8000/admin/logic/productincart/2/change/",
+                     "method":"POST",
+                     "param":"Sec-Fetch-Site",
+                     "attack":"same-origin' AND '1'='1' -- "
+                  },
+                  {
+                     "uri":"http://localhost:8000/admin/logic/productincart/2/change/",
+                     "method":"POST",
+                     "param":"Sec-Fetch-User",
+                     "attack":"?1 OR 1=1 -- "
+                  },
+                  {
+                     "uri":"http://localhost:8000/admin/",
+                     "method":"GET",
+                     "param":"sec-ch-ua",
+                     "attack":"\" Not A;Brand\";v=\"99\", \"Chromium\";v=\"90\", \"Google Chrome\";v=\"90\"' AND '1'='1' -- "
+                  },
+                  {
+                     "uri":"http://localhost:8000/admin/logic/productincart/2/change/",
+                     "method":"POST",
+                     "param":"_save",
+                     "attack":"Save' OR '1'='1' -- "
+                  },
+                  {
+                     "uri":"http://localhost:8000/admin/logic/product/2/change/",
+                     "method":"POST",
+                     "param":"User-Agent",
+                     "attack":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/90.0.4430.85 Safari/537.36 AND 1=1 -- "
+                  }
+               ],
+               "count":"11",
+               "solution":"<p>Do not trust client side input, even if there is client side validation in place.  <\/p><p>In general, type check all data on the server side.<\/p><p>If the application uses JDBC, use PreparedStatement or CallableStatement, with parameters passed by '?'<\/p><p>If the application uses ASP, use ADO Command Objects with strong type checking and parameterized queries.<\/p><p>If database Stored Procedures can be used, use them.<\/p><p>Do *not* concatenate strings into queries in the stored procedure, or use 'exec', 'exec immediate', or equivalent functionality!<\/p><p>Do not create dynamic SQL queries using simple string concatenation.<\/p><p>Escape all data received from the client.<\/p><p>Apply an 'allow list' of allowed characters, or a 'deny list' of disallowed characters in user input.<\/p><p>Apply the principle of least privilege by using the least privileged database user possible.<\/p><p>In particular, avoid using the 'sa' or 'db-owner' database users. This does not eliminate SQL injection, but minimizes its impact.<\/p><p>Grant the minimum database access that is necessary for the application.<\/p>",
+               "otherinfo":"<p>The page results were successfully manipulated using the boolean conditions [1' AND '1'='1' -- ] and [1' AND '1'='2' -- ]<\/p><p>The parameter value being modified was NOT stripped from the HTML output for the purposes of the comparison<\/p><p>Data was returned for the original parameter.<\/p><p>The vulnerability was detected by successfully restricting the data originally returned, by manipulating the parameter<\/p>",
+               "reference":"<p>https://cheatsheetseries.owasp.org/cheatsheets/SQL_Injection_Prevention_Cheat_Sheet.html<\/p>",
+               "cweid":"89",
+               "wascid":"19",
+               "sourceid":"1"
+            },
+            {
+               "pluginid":"10021",
+               "alertRef":"10021",
+               "alert":"X-Content-Type-Options Header Missing",
+               "name":"X-Content-Type-Options Header Missing",
+               "riskcode":"1",
+               "confidence":"2",
+               "riskdesc":"Low (Medium)",
+               "desc":"<p>The Anti-MIME-Sniffing header X-Content-Type-Options was not set to 'nosniff'. This allows older versions of Internet Explorer and Chrome to perform MIME-sniffing on the response body, potentially causing the response body to be interpreted and displayed as a content type other than the declared content type. Current (early 2014) and legacy versions of Firefox will use the declared content type (if one is set), rather than performing MIME-sniffing.<\/p>",
+               "instances":[
+                  {
+                     "uri":"http://localhost:8000/static/admin/css/widgets.css",
+                     "method":"GET",
+                     "param":"X-Content-Type-Options"
+                  },
+                  {
+                     "uri":"http://localhost:8000/static/admin/js/actions.js",
+                     "method":"GET",
+                     "param":"X-Content-Type-Options"
+                  },
+                  {
+                     "uri":"http://localhost:8000/static/admin/css/responsive.css",
+                     "method":"GET",
+                     "param":"X-Content-Type-Options"
+                  },
+                  {
+                     "uri":"http://localhost:8000/static/admin/js/nav_sidebar.js",
+                     "method":"GET",
+                     "param":"X-Content-Type-Options"
+                  },
+                  {
+                     "uri":"http://localhost:8000/static/admin/fonts/Roboto-Bold-webfont.woff",
+                     "method":"GET",
+                     "param":"X-Content-Type-Options"
+                  },
+                  {
+                     "uri":"http://localhost:8000/static/admin/js/vendor/xregexp/xregexp.js",
+                     "method":"GET",
+                     "param":"X-Content-Type-Options"
+                  },
+                  {
+                     "uri":"http://localhost:8000/static/admin/js/vendor/jquery/jquery.js",
+                     "method":"GET",
+                     "param":"X-Content-Type-Options"
+                  },
+                  {
+                     "uri":"http://localhost:8000/static/admin/js/change_form.js",
+                     "method":"GET",
+                     "param":"X-Content-Type-Options"
+                  },
+                  {
+                     "uri":"http://localhost:8000/static/admin/css/dashboard.css",
+                     "method":"GET",
+                     "param":"X-Content-Type-Options"
+                  },
+                  {
+                     "uri":"http://localhost:8000/static/admin/js/jquery.init.js",
+                     "method":"GET",
+                     "param":"X-Content-Type-Options"
+                  },
+                  {
+                     "uri":"http://localhost:8000/static/admin/css/base.css",
+                     "method":"GET",
+                     "param":"X-Content-Type-Options"
+                  },
+                  {
+                     "uri":"http://localhost:8000/static/admin/fonts/Roboto-Light-webfont.woff",
+                     "method":"GET",
+                     "param":"X-Content-Type-Options"
+                  },
+                  {
+                     "uri":"http://localhost:8000/static/admin/js/core.js",
+                     "method":"GET",
+                     "param":"X-Content-Type-Options"
+                  },
+                  {
+                     "uri":"http://localhost:8000/static/admin/fonts/Roboto-Regular-webfont.woff",
+                     "method":"GET",
+                     "param":"X-Content-Type-Options"
+                  },
+                  {
+                     "uri":"http://localhost:8000/static/admin/js/urlify.js",
+                     "method":"GET",
+                     "param":"X-Content-Type-Options"
+                  },
+                  {
+                     "uri":"http://localhost:8000/static/admin/css/nav_sidebar.css",
+                     "method":"GET",
+                     "param":"X-Content-Type-Options"
+                  },
+                  {
+                     "uri":"http://localhost:8000/static/admin/css/fonts.css",
+                     "method":"GET",
+                     "param":"X-Content-Type-Options"
+                  },
+                  {
+                     "uri":"http://localhost:8000/static/admin/css/changelists.css",
+                     "method":"GET",
+                     "param":"X-Content-Type-Options"
+                  },
+                  {
+                     "uri":"http://localhost:8000/static/admin/css/login.css",
+                     "method":"GET",
+                     "param":"X-Content-Type-Options"
+                  },
+                  {
+                     "uri":"http://localhost:8000/static/admin/css/forms.css",
+                     "method":"GET",
+                     "param":"X-Content-Type-Options"
+                  }
+               ],
+               "count":"23",
+               "solution":"<p>Ensure that the application/web server sets the Content-Type header appropriately, and that it sets the X-Content-Type-Options header to 'nosniff' for all web pages.<\/p><p>If possible, ensure that the end user uses a standards-compliant and modern web browser that does not perform MIME-sniffing at all, or that can be directed by the web application/web server to not perform MIME-sniffing.<\/p>",
+               "otherinfo":"<p>This issue still applies to error type pages (401, 403, 500, etc.) as those pages are often still affected by injection issues, in which case there is still concern for browsers sniffing pages away from their actual content type.<\/p><p>At \"High\" threshold this scan rule will not alert on client or server error responses.<\/p>",
+               "reference":"<p>http://msdn.microsoft.com/en-us/library/ie/gg622941%28v=vs.85%29.aspx<\/p><p>https://owasp.org/www-community/Security_Headers<\/p>",
+               "cweid":"16",
+               "wascid":"15",
+               "sourceid":"3"
+            },
+            {
+               "pluginid":"90033",
+               "alertRef":"90033",
+               "alert":"Loosely Scoped Cookie",
+               "name":"Loosely Scoped Cookie",
+               "riskcode":"0",
+               "confidence":"1",
+               "riskdesc":"Informational (Low)",
+               "desc":"<p>Cookies can be scoped by domain or path. This check is only concerned with domain scope.The domain scope applied to a cookie determines which domains can access it. For example, a cookie can be scoped strictly to a subdomain e.g. www.nottrusted.com, or loosely scoped to a parent domain e.g. nottrusted.com. In the latter case, any subdomain of nottrusted.com can access the cookie. Loosely scoped cookies are common in mega-applications like google.com and live.com. Cookies set from a subdomain like app.foo.bar are transmitted only to that domain by the browser. However, cookies scoped to a parent-level domain may be transmitted to the parent, or any subdomain of the parent.<\/p>",
+               "instances":[
+                  {
+                     "uri":"http://localhost:8000/admin/login/?next=/admin/",
+                     "method":"GET"
+                  },
+                  {
+                     "uri":"http://localhost:8000/admin/logic/productincart/2/change/",
+                     "method":"POST"
+                  },
+                  {
+                     "uri":"http://localhost:8000/admin/logic/product/2/change/",
+                     "method":"GET"
+                  },
+                  {
+                     "uri":"http://localhost:8000/admin/login/?next=/admin/",
+                     "method":"POST"
+                  },
+                  {
+                     "uri":"http://localhost:8000/admin/logic/productincart/2/change/",
+                     "method":"GET"
+                  },
+                  {
+                     "uri":"http://localhost:8000/admin/logic/product/",
+                     "method":"GET"
+                  },
+                  {
+                     "uri":"http://localhost:8000/admin/logic/product/3/change/",
+                     "method":"GET"
+                  },
+                  {
+                     "uri":"http://localhost:8000/admin/logic/product/add/",
+                     "method":"POST"
+                  },
+                  {
+                     "uri":"http://localhost:8000/admin/login/?next=/admin/logic/productincart/",
+                     "method":"GET"
+                  },
+                  {
+                     "uri":"http://localhost:8000/admin/logic/product/add/",
+                     "method":"GET"
+                  },
+                  {
+                     "uri":"http://localhost:8000/admin/logic/product/2/change/",
+                     "method":"GET"
+                  },
+                  {
+                     "uri":"http://localhost:8000/admin/logic/product/2/change/",
+                     "method":"POST"
+                  },
+                  {
+                     "uri":"http://localhost:8000/admin/logic/productincart/",
+                     "method":"GET"
+                  },
+                  {
+                     "uri":"http://localhost:8000/admin/logic/product/",
+                     "method":"GET"
+                  },
+                  {
+                     "uri":"http://localhost:8000/admin/login/?next=/admin/",
+                     "method":"GET"
+                  },
+                  {
+                     "uri":"http://localhost:8000/admin/logic/product/2/change/",
+                     "method":"POST"
+                  },
+                  {
+                     "uri":"http://localhost:8000/admin/logic/productincart/",
+                     "method":"GET"
+                  }
+               ],
+               "count":"17",
+               "solution":"<p>Always scope cookies to a FQDN (Fully Qualified Domain Name).<\/p>",
+               "otherinfo":"<p>The origin domain used for comparison was: <\/p><p>localhost<\/p><p>csrftoken=UFabVGCRsMyNbNZD5jQwRyIGh61flyeISQfmoUJ0nmDwHO6UvWlOXQW75Twm8CZg<\/p><p><\/p>",
+               "reference":"<p>https://tools.ietf.org/html/rfc6265#section-4.1<\/p><p>https://owasp.org/www-project-web-security-testing-guide/v41/4-Web_Application_Security_Testing/06-Session_Management_Testing/02-Testing_for_Cookies_Attributes.html<\/p><p>http://code.google.com/p/browsersec/wiki/Part2#Same-origin_policy_for_cookies<\/p>",
+               "cweid":"565",
+               "wascid":"15",
+               "sourceid":"3"
+            },
+            {
+               "pluginid":"10096",
+               "alertRef":"10096",
+               "alert":"Timestamp Disclosure - Unix",
+               "name":"Timestamp Disclosure - Unix",
+               "riskcode":"0",
+               "confidence":"1",
+               "riskdesc":"Informational (Low)",
+               "desc":"<p>A timestamp was disclosed by the application/web server - Unix<\/p>",
+               "instances":[
+                  {
+                     "uri":"http://localhost:8000/static/admin/js/vendor/jquery/jquery.js",
+                     "method":"GET",
+                     "evidence":"20110929"
+                  },
+                  {
+                     "uri":"http://localhost:8000/admin/logic/product/3/change/",
+                     "method":"GET",
+                     "evidence":"31449600"
+                  },
+                  {
+                     "uri":"http://localhost:8000/static/admin/js/vendor/jquery/jquery.js",
+                     "method":"GET",
+                     "evidence":"20030331"
+                  },
+                  {
+                     "uri":"http://localhost:8000/admin/logic/product/",
+                     "method":"GET",
+                     "evidence":"31449600"
+                  },
+                  {
+                     "uri":"http://localhost:8000/admin/logic/product/2/change/",
+                     "method":"GET",
+                     "evidence":"31449600"
+                  },
+                  {
+                     "uri":"http://localhost:8000/admin/logic/productincart/2/change/",
+                     "method":"GET",
+                     "evidence":"31449600"
+                  },
+                  {
+                     "uri":"http://localhost:8000/admin/logic/product/add/",
+                     "method":"GET",
+                     "evidence":"31449600"
+                  },
+                  {
+                     "uri":"http://localhost:8000/admin/login/?next=/admin/",
+                     "method":"GET",
+                     "evidence":"31449600"
+                  },
+                  {
+                     "uri":"http://localhost:8000/admin/login/?next=/admin/logic/productincart/",
+                     "method":"GET",
+                     "evidence":"31449600"
+                  },
+                  {
+                     "uri":"http://localhost:8000/admin/login/?next=/admin/",
+                     "method":"POST",
+                     "evidence":"31449600"
+                  },
+                  {
+                     "uri":"http://localhost:8000/admin/logic/productincart/",
+                     "method":"GET",
+                     "evidence":"31449600"
+                  }
+               ],
+               "count":"11",
+               "solution":"<p>Manually confirm that the timestamp data is not sensitive, and that the data cannot be aggregated to disclose exploitable patterns.<\/p>",
+               "otherinfo":"<p>20110929, which evaluates to: 1970-08-21 19:22:09<\/p>",
+               "reference":"<p>http://projects.webappsec.org/w/page/13246936/Information%20Leakage<\/p>",
+               "cweid":"200",
+               "wascid":"13",
+               "sourceid":"3"
+            },
+            {
+               "pluginid":"40009",
+               "alertRef":"40009",
+               "alert":"Server Side Include",
+               "name":"Server Side Include",
+               "riskcode":"3",
+               "confidence":"2",
+               "riskdesc":"High (Medium)",
+               "desc":"<p>Certain parameters may cause Server Side Include commands to be executed.  This may allow database connection or arbitrary code to be executed.<\/p>",
+               "instances":[
+                  {
+                     "uri":"http://localhost:8000/admin/logic/product/2/change/",
+                     "method":"POST",
+                     "param":"Accept",
+                     "attack":"\"><!--#EXEC cmd=\"dir \\\"--><",
+                     "evidence":"Program Files\\\\Common Files'\nCOMMONPROGRAMFILES(X86) = 'C:\\\\Program Files (x86)\\\\Common Files'\nCOMMONPROGRAMW6432 = 'C:\\\\Program Files\\\\Common Files'\nCOMPUTERNAME = 'DESKTOP-IUK1R24'\nCOMSPEC = 'C:\\\\Windows\\\\system32\\\\cmd.exe;C:\\\\Users\\\\urbro\\\\AppData\\\\Local\\\\Programs\\\\Python\\\\Python39'\nCONTENT_LENGTH = '115'\nCONTENT_TYPE = 'application/x-www-form-urlencoded'\nCSRF_COOKIE = 'lBp71Cnwkl21GMLflnz3Hv6fLJEeBooylpxa0KMnt0xiH1f6Dlc3xIeSMFcy5hGt'\nDJANGO_SETTINGS_MODULE = 'security.settings'\nDRIVERDATA = 'C:\\\\Windows\\\\System32\\\\Drivers\\\\DriverData'\nGATEWAY_INTERFACE = 'CGI/1.1'\nHOMEDRIVE = 'C:'\nHOMEPATH = '\\\\Users\\\\urbro'\nHTTP_ACCEPT = '\"><!--#EXEC cmd=\"dir \\\\\"--><'\nHTTP_ACCEPT_LANGUAGE = 'pl-PL,pl;q=0.9,en-US;q=0.8,en;q=0.7'\nHTTP_CACHE_CONTROL = 'max-age=0'\nHTTP_CONNECTION = 'keep-alive'\nHTTP_COOKIE = 'csrftoken=lBp71Cnwkl21GMLflnz3Hv6fLJEeBooylpxa0KMnt0xiH1f6Dlc3xIeSMFcy5hGt; sessionid=9j2decjr3z2qmjjjd3m4styzomczr82q'\nHTTP_HOST = 'localhost:8000'\nHTTP_ORIGIN = 'https://localhost:8000'\nHTTP_REFERER = 'https://localhost:8000/admin/logic/product/2/change/'\nHTTP_SEC_CH_UA = '\" Not A;Brand\";v=\"99\", \"Chromium\";v=\"90\", \"Google Chrome\";v=\"90\"'\nHTTP_SEC_CH_UA_MOBILE = '?0'\nHTTP_SEC_FETCH_DEST = 'document'\nHTTP_SEC_FETCH_MODE = 'navigate'\nHTTP_SEC_FETCH_SITE = 'same-origin'\nHTTP_SEC_FETCH_USER = '?1'\nHTTP_UPGRADE_INSECURE_REQUESTS = '1'\nHTTP_USER_AGENT = 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/90.0.4430.85 Safari/537.36'\nLOCALAPPDATA = 'C:\\\\Users\\\\urbro\\\\AppData\\\\Local'\nLOGONSERVER = '\\\\\\\\DESKTOP-IUK1R24'\nNUMBER_OF_PROCESSORS = '16'\nONEDRIVE = 'C:\\\\Users\\\\urbro\\\\OneDrive'\nONEDRIVECONSUMER = 'C:\\\\Users\\\\urbro\\\\OneDrive'\nOS = 'Windows_NT'\nPATH = 'C:\\\\Program Files (x86)\\\\Common Files\\\\Oracle\\\\Java\\\\javapath;C:\\\\Users\\\\urbro\\\\Desktop\\\\Oracle\\\\bin;C:\\\\Windows\\\\system32;C:\\\\Windows;C:\\\\Windows\\\\System32\\\\Wbem;C:\\\\Windows\\\\System32\\\\WindowsPowerShell\\\\v1.0\\\\;C:\\\\Windows\\\\System32\\\\OpenSSH\\\\;C:\\\\Program Files (x86)\\\\NVIDIA Corporation\\\\PhysX\\\\Common;C:\\\\Program Files\\\\NVIDIA Corporation\\\\NVIDIA NvDLISR;C:\\\\Users\\\\urbro\\\\Desktop\\\\Oracle\\\\bin;C:\\\\Program Files\\\\Git\\\\cmd;C:\\\\Users\\\\urbro\\\\AppData\\\\Local\\\\Programs\\\\Python\\\\Python39;C:\\\\Users\\\\urbro\\\\AppData\\\\Local\\\\Microsoft\\\\WindowsApps;C:\\\\Program Files (x86)\\\\Common Files\\\\Oracle\\\\Java\\\\javapath;C:\\\\Users\\\\urbro\\\\Desktop\\\\Oracle\\\\bin;C:\\\\Users\\\\urbro\\\\AppData\\\\Local\\\\atom\\\\bin;C:\\\\Users\\\\urbro\\\\AppData\\\\Local\\\\Programs\\\\Python\\\\Python39;'\nPATHEXT = '.COM;.EXE;.BAT;.CMD;.VBS;.VBE;.JS;.JSE;.WSF;.WSH;.MSC'\nPATH_INFO = '/admin/logic/product/2/change/'\nPROCESSOR_ARCHITECTURE = 'AMD64'\nPROCESSOR_IDENTIFIER = 'Intel64 Family 6 Model 165 Stepping 5, GenuineIntel'\nPROCESSOR_LEVEL = '6'\nPROCESSOR_REVISION = 'a505'\nPROGRAMDATA = 'C:\\\\ProgramData'\nPROGRAMFILES = 'C:\\\\Program Files'\nPROGRAMFILES(X86) = 'C:\\\\Program Files (x86)'\nPROGRAMW6432 = 'C:\\\\Program Files'\nPROMPT = '$P$G'\nPSMODULEPATH = 'C:\\\\Program Files\\\\WindowsPowerShell\\\\Modules;C:\\\\Windows\\\\system32\\\\WindowsPowerShell\\\\v1.0\\\\Modules'\nPUBLIC = 'C:\\\\Users\\\\Public'\nQUERY_STRING = ''\nREMOTE_ADDR = '127.0.0.1'\nREMOTE_HOST = ''\nREQUEST_METHOD = 'POST'\nRUN_MAIN = 'true'\nSCRIPT_NAME = ''\nSERVER_NAME = 'DESKTOP-IUK1R24'\nSERVER_PORT = '8000'\nSERVER_PROTOCOL = 'HTTP/1.1'\nSERVER_SOFTWARE = 'WSGIServer/0.2'\nSESSIONNAME = 'Console'\nSYSTEMDRIVE = 'C:'\nSYSTEMROOT = 'C:\\\\Windows'\nTEMP = 'C:\\\\Users\\\\urbro\\\\AppData\\\\Local\\\\Temp'\nTMP = 'C:\\\\Users\\\\urbro\\\\AppData\\\\Local\\\\Temp'\nTNS_ADMIN = 'C:\\\\Users\\\\urbro\\\\Desktop\\\\Oracle\\\\network\\\\admin\\\\tnsnames.ora'\nUSERDOMAIN = 'DESKTOP-IUK1R24'\nUSERDOMAIN_ROAMINGPROFILE = 'DESKTOP-IUK1R24'\nUSERNAME = 'urbro'\nUSERPROFILE = 'C:\\\\Users\\\\urbro'\nWINDIR = 'C:\\\\Windows"
+                  }
+               ],
+               "count":"1",
+               "solution":"<p>Do not trust client side input and enforce a tight check in the server side.  Disable server side includes.<\/p><p><\/p>",
+               "reference":"<p>http://www.carleton.ca/~dmcfet/html/ssi.html<\/p>",
+               "cweid":"97",
+               "wascid":"31",
+               "sourceid":"1"
+            },
+            {
+               "pluginid":"6",
+               "alertRef":"6",
+               "alert":"Path Traversal",
+               "name":"Path Traversal",
+               "riskcode":"3",
+               "confidence":"2",
+               "riskdesc":"High (Medium)",
+               "desc":"<p>The Path Traversal attack technique allows an attacker access to files, directories, and commands that potentially reside outside the web document root directory. An attacker may manipulate a URL in such a way that the web site will execute or reveal the contents of arbitrary files anywhere on the web server. Any device that exposes an HTTP-based interface is potentially vulnerable to Path Traversal.<\/p><p><\/p><p>Most web sites restrict user access to a specific portion of the file-system, typically called the \"web document root\" or \"CGI root\" directory. These directories contain the files intended for user access and the executable necessary to drive web application functionality. To access files or execute commands anywhere on the file-system, Path Traversal attacks will utilize the ability of special-characters sequences.<\/p><p><\/p><p>The most basic Path Traversal attack uses the \"../\" special-character sequence to alter the resource location requested in the URL. Although most popular web servers will prevent this technique from escaping the web document root, alternate encodings of the \"../\" sequence may help bypass the security filters. These method variations include valid and invalid Unicode-encoding (\"..%u2216\" or \"..%c0%af\") of the forward slash character, backslash characters (\"..\\\") on Windows-based servers, URL encoded characters \"%2e%2e%2f\"), and double URL encoding (\"..%255c\") of the backslash character.<\/p><p><\/p><p>Even if the web server properly restricts Path Traversal attempts in the URL path, a web application itself may still be vulnerable due to improper handling of user-supplied input. This is a common problem of web applications that use template mechanisms or load static text from files. In variations of the attack, the original URL parameter value is substituted with the file name of one of the web application's dynamic scripts. Consequently, the results can reveal source code because the file is interpreted as text instead of an executable script. These techniques often employ additional special characters such as the dot (\".\") to reveal the listing of the current working directory, or \"%00\" NULL characters in order to bypass rudimentary file extension checks.<\/p>",
+               "instances":[
+                  {
+                     "uri":"http://localhost:8000/admin/logic/productincart/2/%2Fthishouldnotexistandhopefullyitwillnot",
+                     "method":"GET",
+                     "param":"change",
+                     "attack":"/thishouldnotexistandhopefullyitwillnot"
+                  },
+                  {
+                     "uri":"http://localhost:8000/admin/logic/productincart/%2Fthishouldnotexistandhopefullyitwillnot",
+                     "method":"GET",
+                     "param":"2",
+                     "attack":"/thishouldnotexistandhopefullyitwillnot"
+                  },
+                  {
+                     "uri":"http://localhost:8000/admin/admin",
+                     "method":"GET",
+                     "param":"static",
+                     "attack":"admin"
+                  }
+               ],
+               "count":"3",
+               "solution":"<p>Zakładaj, że wszystkie dane wejściowe są szkodliwe. Używaj strategii sprawdzania danych wejściowych \"akceptuj dobrze znane\", np. Użyj białej listy dopuszczalnych danych wejściowych ściśle zgodnych ze specyfikacjami. Odrzucaj wszystkie dane wejściowe, które nie są ściśle dopasowane ze specyfikacjami lub przeobraź je w takie, które są dopasowane. Nie polegaj wyłącznie na danych wejściowych wyglądających na szkodliwe lub zdeformowane(n.p. nie polegaj na czarnej liście). Niemniej, czarne listy mogą być pomocne w wykryciu potencjalnych ataków lub w ustaleniu które dane wyjściowe są tak zdeformowane, że powinny być kategorycznie odrzucone.<\/p><p><\/p><p>Kiedy przeprowadzasz weryfikację danych wejściowych, bierz pod uwagę wszystkie potencjalnie ważne właściwości, włączając długość, pełny zasięg akceptowalnych wartości, brakujących lub dodatkowych danych wejściowych, zgodność poprzez ważne pola i dostosowanie się do zasad sprawy. As an example of business rule logic, \"boat\" may be syntactically valid because it only contains alphanumeric characters, but it is not valid if you are expecting colors such as \"red\" or \"blue.\"<\/p><p><\/p><p>For filenames, use stringent whitelists that limit the character set to be used. If feasible, only allow a single \".\" character in the filename to avoid weaknesses, and exclude directory separators such as \"/\". Use a whitelist of allowable file extensions.<\/p><p><\/p><p>Warning: if you attempt to cleanse your data, then do so that the end result is not in the form that can be dangerous. A sanitizing mechanism can remove characters such as '.' and ';' which may be required for some exploits. An attacker can try to fool the sanitizing mechanism into \"cleaning\" data into a dangerous form. Suppose the attacker injects a '.' inside a filename (e.g. \"sensi.tiveFile\") and the sanitizing mechanism removes the character resulting in the valid filename, \"sensitiveFile\". If the input data are now assumed to be safe, then the file may be compromised. <\/p><p><\/p><p>Dane wejściowe powinny być dekodowane i kanonizowane do bieżącej wewnętrznej reprezentacji przed weryfikacją. Make sure that your application does not decode the same input twice. Takie błędy mogą być wykorzystane do przejścia schematów białej listy poprzez wprowadzenie niebezpiecznych danych wejściowych po tym jak były sprawdzone.<\/p><p><\/p><p>Use a built-in path canonicalization function (such as realpath() in C) that produces the canonical version of the pathname, which effectively removes \"..\" sequences and symbolic links.<\/p><p><\/p><p>Uruchom swój kod używając najmniejszych przywilejów, które są wymagane do wykonania koniecznych zadań. Jeśli możliwe, utwórz odizolowane konta z limitowanymi przywilejami, które są używane tylko do pojedynczych zadań. Tą drogą, skuteczny atak nie da gwałtownie dostępu do reszty oprogramowania lub jego środowiska. Na przykład, baza danych aplikacji rzadko musi uruchomić bazę danych administratora zwłaszcza w codziennych operacjach.<\/p><p><\/p><p>When the set of acceptable objects, such as filenames or URLs, is limited or known, create a mapping from a set of fixed input values (such as numeric IDs) to the actual filenames or URLs, and reject all other inputs.<\/p><p><\/p><p>Run your code in a \"jail\" or similar sandbox environment that enforces strict boundaries between the process and the operating system. Może to skutecznie ograniczyć, które pliki mogą być dostępne w określonym katalogu lub które polecenia mogą być wykonywane przez twoje oprogramowanie.<\/p><p><\/p><p>Przykłady poziomu OS obejmujące Unix chroot jail, AppArmor, and SELinux. Na zasadach ogólnych, zarządzany kod może zapewnić pewną ochronę. Na przykład,, java.io.FilePermission w Menadżerze Ochrony Javy umożliwia ci sprecyzować ograniczenia odnośnie operacji na plikach.<\/p><p><\/p><p>To może nie być wykonalne rozwiązanie i ogranicza wpływ tylko na system operacyjny; reszta aplikacji może wciąż być podatna na zagrożenie.<\/p>",
+               "reference":"<p>http://projects.webappsec.org/Path-Traversal<\/p><p>http://cwe.mitre.org/data/definitions/22.html<\/p>",
+               "cweid":"22",
+               "wascid":"33",
+               "sourceid":"1"
+            },
+            {
+               "pluginid":"20019",
+               "alertRef":"20019",
+               "alert":"External Redirect",
+               "name":"External Redirect",
+               "riskcode":"3",
+               "confidence":"2",
+               "riskdesc":"High (Medium)",
+               "desc":"<p>URL redirectors represent common functionality employed by web sites to forward an incoming request to an alternate resource. This can be done for a variety of reasons and is often done to allow resources to be moved within the directory structure and to avoid breaking functionality for users that request the resource at its previous location. URL redirectors may also be used to implement load balancing, leveraging abbreviated URLs or recording outgoing links. It is this last implementation which is often used in phishing attacks as described in the example below. URL redirectors do not necessarily represent a direct security vulnerability but can be abused by attackers trying to social engineer victims into believing that they are navigating to a site other than the true destination.<\/p>",
+               "instances":[
+                  {
+                     "uri":"http://localhost:8000/admin/login/?next=/admin/",
+                     "method":"POST",
+                     "param":"next",
+                     "attack":"3565898147097235041.owasp.org",
+                     "evidence":"3565898147097235041.owasp.org"
+                  }
+               ],
+               "count":"1",
+               "solution":"<p>Zakładaj, że wszystkie dane wejściowe są szkodliwe. Używaj strategii sprawdzania danych wejściowych \"akceptuj dobrze znane\", np. Użyj białej listy dopuszczalnych danych wejściowych ściśle zgodnych ze specyfikacjami. Odrzucaj wszystkie dane wejściowe, które nie są ściśle dopasowane ze specyfikacjami lub przeobraź je w takie, które są dopasowane. Nie polegaj wyłącznie na danych wejściowych wyglądających na szkodliwe lub zdeformowane(n.p. nie polegaj na czarnej liście). Niemniej, czarne listy mogą być pomocne w wykryciu potencjalnych ataków lub w ustaleniu które dane wyjściowe są tak zdeformowane, że powinny być kategorycznie odrzucone.<\/p><p><\/p><p>Kiedy przeprowadzasz weryfikację danych wejściowych, bierz pod uwagę wszystkie potencjalnie ważne właściwości, włączając długość, pełny zasięg akceptowalnych wartości, brakujących lub dodatkowych danych wejściowych, zgodność poprzez ważne pola i dostosowanie się do zasad sprawy. As an example of business rule logic, \"boat\" may be syntactically valid because it only contains alphanumeric characters, but it is not valid if you are expecting colors such as \"red\" or \"blue.\"<\/p><p><\/p><p>Use a whitelist of approved URLs or domains to be used for redirection.<\/p><p><\/p><p>Use an intermediate disclaimer page that provides the user with a clear warning that they are leaving your site. Implement a long timeout before the redirect occurs, or force the user to click on the link. Be careful to avoid XSS problems when generating the disclaimer page.<\/p><p><\/p><p>When the set of acceptable objects, such as filenames or URLs, is limited or known, create a mapping from a set of fixed input values (such as numeric IDs) to the actual filenames or URLs, and reject all other inputs.<\/p><p><\/p><p>For example, ID 1 could map to \"/login.asp\" and ID 2 could map to \"http://www.example.com/\". Funkcje takie jak ESAPI AccessReferenceMap dają taką możliwość.<\/p><p><\/p><p>Fazy: Architektura i Projektowanie; Implementacja<\/p><p>Zrozum wszystkie potencjalne obszary gdzie niezaufane dane wejściowe wejdą w twoje oprogramowanie: parametry lub argumenty, ciasteczka, jakikolwiek odczyt z sieci, zmiennych środowiskowych, wyszukiwania wstecznego DNS, wyniki zapytania, nagłówki żądań, komponenty URL, e-mail, pliki, bazy danych i dowolne zewnętrzne<\/p><p>systemy, które dostarczają dane do aplikacji. Pamiętaj o tym, że takie dane wejściowe mogą uzyskane poprzez wezwania API.<\/p><p><\/p><p>Many open redirect problems occur because the programmer assumed that certain inputs could not be modified, such as cookies and hidden form fields.<\/p>",
+               "otherinfo":"<p>The response contains a redirect in its Location header which allows an external Url to be set.<\/p>",
+               "reference":"<p>http://projects.webappsec.org/URL-Redirector-Abuse<\/p><p>http://cwe.mitre.org/data/definitions/601.html<\/p>",
+               "cweid":"601",
+               "wascid":"38",
+               "sourceid":"1"
+            }
+         ]
+      },
+      {
+         "@name":"https://accounts.google.com",
+         "@host":"accounts.google.com",
+         "@port":"443",
+         "@ssl":"true",
+         "alerts":[
+
+         ]
+      }
+   ]
+}

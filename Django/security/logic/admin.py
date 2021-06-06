@@ -3,6 +3,7 @@ from logic.models import User, Product, Shopping, ProductInCart
 
 class UserPanelAdmin(admin.ModelAdmin):
     exclude = ["created_by"]
+
     def has_view_permission(self, request, obj=None):
         return True
 
