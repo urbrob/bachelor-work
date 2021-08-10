@@ -1,0 +1,13 @@
+<h1>Shoppings</h1>
+
+<div class="shoppings">
+   <% @shoppings.each do |shopping| %>
+     <div class="shopping">
+       <h3><%= link_to shopping.date, shopping_path(shopping) %></h3>
+       <ul class="shopping-actions">
+         <li><%= link_to "Edit", edit_shopping_path(shopping) %></li>
+         <li><%= link_to "Delete", shopping_path(shopping), method: "delete" %></li>
+     </div>
+   <% end %>
+   <%= link_to "New shopping", new_shopping_path %>
+</div>

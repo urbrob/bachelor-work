@@ -1,0 +1,12 @@
+<h1>Products</h1>
+
+<div class="products">
+   <% @products.each do |product| %>
+     <div class="product">
+       <h3><%= link_to product.name, product_path(product) %></h3>
+       <ul class="product-actions">
+         <li><%= link_to "Delete", product_path(product), method: "delete" %></li>
+     </div>
+   <% end %>
+   <%= link_to "New product", new_product_path %>
+</div>

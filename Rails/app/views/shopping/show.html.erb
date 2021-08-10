@@ -1,0 +1,12 @@
+<h1><%= @shopping.date %></h1>
+
+<div class="products_in_cart">
+   <% @shopping.products_in_cart.each do |product_in_cart| %>
+     <div class="product_in_cart">
+       <h3><%= product_in_cart.product.name %> = <%= product_in_cart.amount %></h3>
+       <li><%= link_to "Edit", edit_shopping_path(shopping) %></li>
+       <li><%= link_to "Delete", shopping_path(shopping), method: delete %></li>
+     </div>
+   <% end %>
+   <%= link_to "New shopping", new_shopping_path %>
+</div>
