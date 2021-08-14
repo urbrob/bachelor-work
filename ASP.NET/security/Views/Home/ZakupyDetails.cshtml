@@ -1,0 +1,108 @@
+﻿@model ZakupyOnline.Models.Zakupy
+
+<div>
+    <h4>Zakupy</h4>
+    <hr />
+    <dl class="row">
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Date)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Date)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Done)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Done)
+        </dd>
+        <dd class="col-sm-10">
+            <a href="/Home/ZakupyDone/@ViewBag.zakupy.ID" class="btn btn-primary btn-lg active" role="button" aria-pressed="true">
+                @if (!ViewBag.zakupy.Done)
+                {<p>Zakończ</p>}
+                else
+                {<p>Rozpocznij</p>}
+            </a>
+        </dd>
+    </dl>
+    <h4>Przedmioty na zakupy</h4>
+    <hr />
+    <table class="table table-striped">
+        <tr>
+            <th>Nazwa</th>
+            <th>Cena</th>
+            <th>W koszyku</th>
+            @if (!ViewBag.zakupy.Done)
+            {
+                <th>Usuń z zakupów</th>
+            }
+        </tr>
+        <tbody>
+            @foreach (var przedmioty in ViewBag.przedmioty_w_zakupy)
+            {
+            <tr>
+                <td>
+                    @przedmioty.Name
+                </td>
+                <td>
+                    @przedmioty.Price
+                </td>
+                <td>
+                    @if (!ViewBag.zakupy.Done)
+                    {
+                        <a href="/Home/DodajDoKoszyka/@ViewBag.zakupy.ID/@przedmioty.ID" class="btn btn-primary btn-lg active" role="button" aria-pressed="true">
+                            @if (@przedmioty.InCart)
+                            {<p>Usuń</p>}
+                            else
+                            {<p>Dodaj</p>}
+                        </a>
+                    }
+                    else
+                    {
+                        @if (@przedmioty.InCart)
+                        {<p>Tak</p>}
+                        else
+                        {<p>Nie</p>}
+                    }
+                </td>
+                @if (!ViewBag.zakupy.Done)
+                {
+                    <td>
+                        <a href="/Home/UsunZZakupy/@ViewBag.zakupy.ID/@przedmioty.ID" class="btn btn-primary btn-lg active" role="button" aria-pressed="true">Usuń</a>
+                    </td>
+                }
+
+            </tr>
+            }
+        </tbody>
+    </table>
+    @if (!ViewBag.zakupy.Done)
+    {
+        <h4>Przedmioty do dodania</h4>
+        <hr />
+        <table class="table table-striped">
+            <tr>
+                <th>Nazwa</th>
+                <th>Cena</th>
+                <th>Dodaj</th>
+            </tr>
+            <tbody>
+                @foreach (var przedmioty in ViewBag.przedmioty)
+                {
+                    <tr>
+                        <td>
+                            @przedmioty.Name
+                        </td>
+                        <td>
+                            @przedmioty.Price
+                        </td>
+                        <td>
+                            <a href="/Home/DodajDoZakupy/@ViewBag.zakupy.ID/@przedmioty.ID" class="btn btn-primary btn-lg active" role="button" aria-pressed="true">Dodaj</a>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    }
+
+</div>

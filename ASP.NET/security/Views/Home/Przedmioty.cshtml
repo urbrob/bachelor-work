@@ -1,0 +1,35 @@
+﻿@model ZakupyOnline.Models.Zakupy;
+@{
+    ViewData["Title"] = "Przedmioty";
+
+}
+<head>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+</head>
+
+<div class="text-center">
+    <h1 class="display-4">Przedmioty</h1>
+    <table class="table table-striped">
+        <tr>
+            <th>Nazwa</th>
+            <th>Cena</th>
+            <th>Usuń</th>
+        </tr>
+        <tbody>
+            @foreach(var przedmioty in ViewBag.przedmioty)
+            {
+            <tr>
+                <td>
+                    @przedmioty.Name
+                </td>
+                <td>
+                    @przedmioty.Price
+                </td>
+                <td><a href="/Home/PrzedmiotyDelete/@przedmioty.ID" class="btn btn-primary btn-lg active" role="button" aria-pressed="true">Usuń</a></td>
+            </tr>
+            }
+        </tbody>
+    </table>
+    <a href="/Home/PrzedmiotyAdd" class="btn btn-primary btn-lg active" role="button" aria-pressed="true">Stwórz nowe przedmioty</a>
+</div>

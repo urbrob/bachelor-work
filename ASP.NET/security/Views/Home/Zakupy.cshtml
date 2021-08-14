@@ -1,0 +1,39 @@
+﻿@model ZakupyOnline.Models.Zakupy;
+@{
+    ViewData["Title"] = "Zakupy";
+
+}
+<head>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+</head>
+
+<div class="text-center">
+    <h1 class="display-4">Zakupy</h1>
+    <table class="table table-striped">
+        <tr>
+            <th>Data</th>
+            <th>Wykonane</th>
+            <th>Usuń</th>
+        </tr>
+        <tbody>
+            @foreach(var zakupy in ViewBag.zakupy)
+            {
+            <tr>
+                <td>
+                    <a href="/Home/ZakupyDetails/@zakupy.ID">@zakupy.Date</a> 
+                </td>
+                <td>
+                    @if (@zakupy.Done) {
+                    <p>Tak</p>
+                       } else {
+                    <p>Nie</p>
+                       }
+                </td>
+                <td><a href="/Home/ZakupyDelete/@zakupy.ID" class="btn btn-primary btn-lg active" role="button" aria-pressed="true">Usuń</a></td>
+            </tr>
+            }
+        </tbody>
+    </table>
+    <a href="/Home/ZakupyAdd" class="btn btn-primary btn-lg active" role="button" aria-pressed="true">Stwórz nowe zakupy</a>
+</div>
